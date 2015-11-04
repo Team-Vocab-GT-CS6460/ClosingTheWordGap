@@ -5,19 +5,21 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>Multi-page template</title> 
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
+		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 	</head> 
 	<body> 
 	<!-- Start of first page: #one -->
-	<div data-role="page" id="one">
+	<div data-role="page" id="one" data-theme="a">
 		<div data-role="header">
-			<h1>Multi-page</h1>
+			<h1>Closing the Word Gap</h1>
 		</div><!-- /header -->
 
-		<div data-role="content" >	
-			<h2>One</h2>
+		<div data-role="content">	
+			<h2>Closing the Word Gap</h2>
 			
 			<p>I have an <code>id</code> of "one" on my page container. I'm first in the source order so I'm shown when the page loads.</p>	
 			
@@ -30,8 +32,8 @@
 			<p><a href="#popup" data-role="button" data-rel="dialog" data-transition="pop">Show page "popup" (as a dialog)</a></p>
 		</div><!-- /content -->
 		
-		<div data-role="footer" data-theme="d">
-			<h4>Page Footer</h4>
+		<div data-role="footer">
+			<h4></h4>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
@@ -42,36 +44,34 @@
 		<div data-role="header">
 			<h1>Two</h1>
 		</div><!-- /header -->
-
-		<div data-role="content" data-theme="a">	
+		<div data-role="content">	
 			<h2>Two</h2>
-			<p>I have an id of "two" on my page container. I'm the second page container in this multi-page template.</p>	
-			<p>Notice that the theme is different for this page because we've added a few <code>data-theme</code> swatch assigments here to show off how flexible it is. You can add any content or widget to these pages, but we're keeping these simple.</p>	
-			<p><a href="#one" data-direction="reverse" data-role="button" data-theme="b">Back to page "one"</a></p>	
-			
+			<p>Test</p>
+			<a href="#" data-role="button" data-icon="star">Star button</a>
+			<p><a href="#one" data-direction="reverse" data-role="button">Back to page "one"</a></p>	
 		</div><!-- /content -->
 		
 		<div data-role="footer">
-			<h4>Page Footer</h4>
+			<h4></h4>
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 
 
 	<!-- Start of third page: #popup -->
-	<div data-role="page" id="popup">
+	<div data-role="page" id="popup" data-theme="a">
 
-		<div data-role="header" data-theme="e">
+		<div data-role="header">
 			<h1>Dialog</h1>
 		</div><!-- /header -->
 
-		<div data-role="content" data-theme="d">	
+		<div data-role="content">	
 			<h2>Popup</h2>
 			<p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p>		
 			<p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p>	
 		</div><!-- /content -->
 		
 		<div data-role="footer">
-			<h4>Page Footer</h4>
+			<h4></h4>
 		</div><!-- /footer -->
 	</div><!-- /page popup -->
 
