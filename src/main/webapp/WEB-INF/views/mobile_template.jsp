@@ -15,7 +15,7 @@
 				font-size: 35px;
 			}
 			body {
-				font-family: "Comic Sans MS", "Comic Sans", cursive;
+				font-family: "Comic Sans MS", "Comic Sans";
 			}
 		</style>
 	</head> 
