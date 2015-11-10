@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
 import edu.gatech.wordgap.spring.jdbc.model.WordList;
@@ -17,7 +18,7 @@ public class QuizController {
 	VocabQuizDAO quizDAO;
 	
 	@RequestMapping(value = "/get/wordlist", method = RequestMethod.GET)
-	public List<WordList> getWordList()
+	public @ResponseBody List<WordList> getWordList()
 	{
 		List<WordList> wordList = quizDAO.getWordList();
 		return wordList;
