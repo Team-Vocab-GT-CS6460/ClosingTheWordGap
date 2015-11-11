@@ -19,9 +19,12 @@
 			}
 		</style>
 	</head> 
+	<%
+	String theme="c";
+	%>
 	<body> 
 	<!-- Start of first page: #one -->
-	<div data-role="page" id="one" data-theme="a">
+	<div data-role="page" id="one" data-theme="<%= theme%>">
 		<div data-role="header">
 			<h1>Closing the Word Gap</h1>
 		</div><!-- /header -->
@@ -29,12 +32,6 @@
 		<div data-role="content">	
 			<h2>Closing the Word Gap</h2>
 			
-			<p>I have an <code>id</code> of "one" on my page container. I'm first in the source order so I'm shown when the page loads.</p>	
-			
-			<p>This is a multi-page boilerplate template that you can copy to build your first jQuery Mobile page. This template contains multiple "page" containers inside, unlike a <a href="page-template.html"> single page template</a> that has just one page within it.</p>	
-			<p>Just view the source and copy the code to get started. All the CSS and JS is linked to the jQuery CDN versions so this is super easy to set up. Remember to include a meta viewport tag in the head to set the zoom level.</p>
-			<p>You link to internal pages by referring to the <code>id</code> of the page you want to show. For example, to <a href="#two" >link</a> to the page with an <code>id</code> of "two", my link would have a <code>href="#two"</code> in the code.</p>	
-
 			<h3>Show internal pages:</h3>
 			<p><a href="#activity1" data-role="button">Activity 1</a></p>
 			<p><a href="#activity2" data-role="button">Activity 2</a></p>
@@ -47,7 +44,43 @@
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
-	<div data-role="page" id="activity1" data-theme="a">
+	<div data-role="page" id="fill_in_the_blank" data-theme="<%= theme%>">
+
+		<div data-role="header">
+			<h1>Fill in the blank!</h1>
+		</div><!-- /header -->
+		<div data-role="content">
+			<h1 onclick="document.getElementById('audio').play();">We can swim in the lake when the water is ______.</h1>
+			<audio src="resources/sounds/hello.mp3" id='audio'></audio>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
+						<img src="http://52.10.68.119:8080/images/calm.png" style="height:200px;" />
+					</div>
+				</div>
+				<div class="ui-block-b">
+					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
+						<img src="resources/images/donkey.svg" style="height:200px;" />
+					</div>
+				</div>
+				<div class="ui-block-c">
+					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
+						<img src="resources/images/happy-cow.svg" style="height:200px;" />
+					</div>
+				</div>
+			</div><!-- /grid-b -->
+			<fieldset class="ui-grid-b">
+				<div class="ui-block-a"><a href="#" data-role="button">Calm</a></div>
+				<div class="ui-block-b"><a href="#" data-role="button">Blow</a></div>
+				<div class="ui-block-c"><a href="#" data-role="button">Autumn</a></div>
+			</fieldset>
+		</div><!-- /content -->
+		<div data-role="footer" style="text-align:right; padding-right:20px;">
+			<a href="#one" data-role="button">Home</a>
+		</div><!-- /footer -->
+	</div><!-- /page two -->
+
+	<div data-role="page" id="activity1" data-theme="<%= theme%>">
 
 		<div data-role="header">
 			<h1>Listen and Choose!</h1>
@@ -81,7 +114,7 @@
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 
-	<div data-role="page" id="activity2" data-theme="a">
+	<div data-role="page" id="activity2" data-theme="<%= theme%>">
 
 		<div data-role="header">
 			<h1>Listen and Choose!</h1>
@@ -116,7 +149,7 @@
 	</div><!-- /page two -->
 
 	<!-- Start of second page: #two -->
-	<div data-role="page" id="two" data-theme="a">
+	<div data-role="page" id="two" data-theme="<%= theme%>">
 
 		<div data-role="header">
 			<h1>Two</h1>
@@ -133,9 +166,8 @@
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 
-
 	<!-- Start of third page: #popup -->
-	<div data-role="page" id="popup" data-theme="a">
+	<div data-role="page" id="popup" data-theme="<%= theme%>">
 
 		<div data-role="header">
 			<h1>Dialog</h1>
@@ -152,5 +184,23 @@
 		</div><!-- /footer -->
 	</div><!-- /page popup -->
 
+	<!-- Start of second page: #two -->
+	<div data-role="page" id="two" data-theme="<%= theme%>">
+
+		<div data-role="header">
+			<h1>Two</h1>
+		</div><!-- /header -->
+		<div data-role="content">	
+			<h2>Two</h2>
+			<p>Test</p>
+			<a href="#" data-role="button" data-icon="star">Star button</a>
+			<p><a href="#one" data-direction="reverse" data-role="button">Back to page "one"</a></p>	
+		</div><!-- /content -->
+		
+		<div data-role="footer">
+			<h4></h4>
+		</div><!-- /footer -->
+	</div><!-- /page two -->
+	
 	</body>
 </html>
