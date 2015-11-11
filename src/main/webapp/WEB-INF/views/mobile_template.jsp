@@ -33,6 +33,7 @@
 			<h2>Closing the Word Gap</h2>
 			
 			<h3>Show internal pages:</h3>
+			<p><a href="#fill_in_the_blank" data-role="button">Fill in the blank</a></p>
 			<p><a href="#activity1" data-role="button">Activity 1</a></p>
 			<p><a href="#activity2" data-role="button">Activity 2</a></p>
 			<p><a href="#two" data-role="button">Show page "two"</a></p>
@@ -51,7 +52,7 @@
 		</div><!-- /header -->
 		<div data-role="content">
 			<h1 onclick="document.getElementById('audio').play();">We can swim in the lake when the water is ______.</h1>
-			<audio src="resources/sounds/hello.mp3" id='audio'></audio>
+			<audio src="resources/sounds/calm.fill_blank.question.mp3" id='audio'></audio>
 			<div class="ui-grid-b">
 				<div class="ui-block-a">
 					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
@@ -60,12 +61,12 @@
 				</div>
 				<div class="ui-block-b">
 					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
-						<img src="resources/images/donkey.svg" style="height:200px;" />
+						<img src="http://52.10.68.119:8080/images/blow.png" style="height:200px;" />
 					</div>
 				</div>
 				<div class="ui-block-c">
 					<div class="ui-bar ui-bar-a" style="height:200px;text-align:center;">
-						<img src="resources/images/happy-cow.svg" style="height:200px;" />
+						<img src="http://52.10.68.119:8080/images/autumn.png" style="height:200px;" />
 					</div>
 				</div>
 			</div><!-- /grid-b -->
