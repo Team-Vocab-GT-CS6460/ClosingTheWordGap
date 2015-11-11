@@ -14,9 +14,6 @@
 			.ui-page .ui-header {
 				font-size: 35px;
 			}
-			body {
-				font-family: "Comic Sans MS", "Comic Sans";
-			}
 		</style>
 	</head> 
 	<%
