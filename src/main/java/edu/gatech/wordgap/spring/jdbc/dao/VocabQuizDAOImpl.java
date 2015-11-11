@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import edu.gatech.wordgap.spring.jdbc.model.WordList;
+import edu.gatech.wordgap.spring.jdbc.model.VocabWord;
 
 
 public class VocabQuizDAOImpl implements VocabQuizDAO {
@@ -17,10 +17,10 @@ public class VocabQuizDAOImpl implements VocabQuizDAO {
 	}
 
 	@Override
-	public List<WordList> getWordList() {
+	public List<VocabWord> getWordList() {
 		String sql = "select * from wordgap.wordlist";
 		Object[] args = new Object[] {};
-		List<WordList> requestList  = jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<WordList>(WordList.class));
+		List<VocabWord> requestList  = jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<VocabWord>(VocabWord.class));
 		return requestList;
 	}
 

@@ -1,6 +1,6 @@
 package edu.gatech.wordgap.spring.jdbc.model;
 
-public class WordList {
+public class VocabWord {
 	  private String word;
 	  private String sentence1;
 	  private String sentence2;
