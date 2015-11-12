@@ -39,5 +39,7 @@
 		class="edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAOImpl">
 		<beans:property name="jdbcTemplate" ref="quizJdbcTemplate"></beans:property>
 	</beans:bean>
-	
+
+    <beans:bean id="profilesDAO" class="edu.gatech.wordgap.spring.jdbc.dao.ProfilesDAOImpl" />
+
 </beans:beans>
