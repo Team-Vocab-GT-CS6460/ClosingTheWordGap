@@ -8,8 +8,8 @@
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
 		<style>
 			.ui-page .ui-header {
 				font-size: 35px;
