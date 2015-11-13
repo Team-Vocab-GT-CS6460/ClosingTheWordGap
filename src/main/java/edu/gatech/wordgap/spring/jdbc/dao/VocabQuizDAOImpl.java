@@ -24,5 +24,6 @@ public class VocabQuizDAOImpl implements VocabQuizDAO {
 		return requestList;
 	}
 
+	
 
 }
