@@ -134,10 +134,30 @@
 			<version>1.9.11</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.att.api</groupId>
-		    <artifactId>codekit</artifactId>
-		    <version>1.0</version>
-		</dependency>
+	      <groupId>org.json</groupId>
+	      <artifactId>json</artifactId>
+	      <version>20140107</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpmime</artifactId>
+	      <version>4.1.2</version>
+    	</dependency>
+	    <dependency>
+	      <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpcore</artifactId>
+	      <version>4.1.2</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpclient</artifactId>
+	      <version>4.1.2</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.commons</groupId>
+	      <artifactId>commons-lang3</artifactId>
+	      <version>3.1</version>
+	    </dependency>
 
 		<!-- JSON -->
 		<dependency>
