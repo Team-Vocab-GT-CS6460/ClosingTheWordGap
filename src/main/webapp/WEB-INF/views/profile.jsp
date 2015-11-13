@@ -3,12 +3,10 @@
 <%@ page session="false" %>
 <html>
 	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<title>Profiles</title>
 	</head>
 	<body>
@@ -18,7 +16,7 @@
 		<br>
 
 	    <form:form action="addProfile" commandName="newKid" method="post">
-	        <p>Kid Name: <form:input type="text" path="name" /></p>
+	        <p>Kid Name: <form:input type="text" path="name" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" /></p>
 	        <p><input type="submit" value=" Add " /></p>
 	    </form:form>
 
@@ -36,7 +34,7 @@
 					var html = '';
 					for(var i = 0; i < kids.length; i++) {
 						var kid = kids[i];
-						html += '<button type="button">' + kid['name'] + '</button>';
+						html += '<button class="ui-btn">' + kid['name'] + '</button><br>';
 					}
 					$('#profiles').html(html);
 				}
