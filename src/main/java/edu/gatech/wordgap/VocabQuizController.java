@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.att.api.oauth.OAuthService;
+import com.att.api.oauth.OAuthToken;
+import com.att.api.speech.service.TtsService;
 
 import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizAnswer;
@@ -81,5 +91,55 @@ public class VocabQuizController {
 		return answer;
 	}
 	
+	@RequestMapping(value = "/get/tts", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
+	public HttpEntity<byte[]> getVoiceResponse(@RequestParam("text") String text, HttpServletResponse response)
+	{
+        //response.getOutputStream().write(audio);
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("audio", "vnd.wav"));
+        
+        byte[] audio = null;
+        
+		try {
+            // Use the app account settings from developer.att.com for the following
+            // values. Make sure that the API scope is set to TTS to access the 
+            // Text To Speech method of the Speech API before retrieving the 
+            // App Key and App Secret.
+            
+            final String fqdn = "https://api.att.com";
 
+            // Enter the value from the 'App Key' field obtained at developer.att.com 
+            // in your app account.
+            final String clientId = "comi8ciao1ufrdnflppyi48tpvmatodp";
+
+            // Enter the value from the 'App Secret' field obtained at developer.att.com 
+            // in your app account.
+            final String clientSecret = "ekowie0gvkiiwqwfnxedjmu9wsryztcx";
+
+            // Create a service to request an OAuth token.
+            OAuthService osrvc = new OAuthService(fqdn, clientId, clientSecret);
+
+            // Get the OAuth access token using the API scope set to TTS for 
+            // the Text To Speech method of the Speech API.
+            OAuthToken token = osrvc.getToken("TTS");
+
+            // Create the service to interact with the Speech API.
+            TtsService ttsService = new TtsService(fqdn, token);
+
+            // Send the request to obtain the audio.
+            audio = ttsService.sendRequest("text/plain", text, "");
+
+            // Print the following message. The call has succeeded, otherwise 
+            // an exception would be thrown.
+            System.out.println("Successfully got audio file!");
+            
+            header.setContentLength(audio.length);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return new HttpEntity<byte[]>(audio, header);
+	}
+	
 }
