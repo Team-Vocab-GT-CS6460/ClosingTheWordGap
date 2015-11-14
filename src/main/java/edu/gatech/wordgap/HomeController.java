@@ -68,8 +68,8 @@ public class HomeController {
         return "profile";
     }
 
-	@RequestMapping(value = "/activities", method = RequestMethod.GET)
-	public String activities(Locale locale, Model model, @RequestParam(value = "kid") String kid) {
+	@RequestMapping(value = "/activities", method = RequestMethod.POST)
+	public String activities(Locale locale, Model model, @RequestParam("kid") String kid) {
 		logger.info("Welcome to Activities!");
 		int id = Integer.parseInt(kid);
 		Kid kidObj = profilesDAO.getKid(id);

@@ -63,14 +63,17 @@
 					var html = '';
 					for(var i = 0; i < kids.length; i++) {
 						var kid = kids[i];
-						html += '<a class=' + kid['icon'] + ' href="activities?kid=' + kid['id'] + '">' + kid['name'] + '</a>';
+						html += '<form:form action="activities" method="post">';
+						html += '<a class=' + kid['icon'] + ' href="javascript:;" onclick="parentNode.parentNode.submit();">' + kid['name'] + '</a>';
+						html += '<input type="hidden" name="kid" value="' + kid['id'] + '" />';
+						html += '</form:form>';
 					}
 					$('#profiles').html(html);
 				    $("[class='dog']")
-				        .append("<img src=http://images.clipartpanda.com/cute-dog-clipart-13289830681766660254dog.svg.hi.png width=100 height=100 style='display: block; cursor: pointer;'/>")
+				        .append("<img src=http://images.clipartpanda.com/cute-dog-clipart-13289830681766660254dog.svg.hi.png />")
 				        .button();
 				    $("[class='cat']")
-				        .append("<img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYslakVXRM31dpE3NCKM8ek1Idgt8NGdNQN_-WR10lhOa4TAq width=100 height=100 style='display: block; cursor: pointer;'/>")
+				        .append("<img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYslakVXRM31dpE3NCKM8ek1Idgt8NGdNQN_-WR10lhOa4TAq />")
 				        .button();
 				}
 			});
