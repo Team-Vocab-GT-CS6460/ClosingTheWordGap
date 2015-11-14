@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Multi-page template</title> 
+		<title>Closing the Word Gap</title> 
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
@@ -40,12 +40,17 @@
 			    height   : 50px;
 			}
 		</style>
+		<%
+		String theme="d";
+		String url_prefix="http://52.10.68.119:8080";
+		%>
 		<script>
+			url_prefix = "http://52.10.68.119:8080"
+
 			$(document).ready(function() {
 				current_question = -1;
 				var data = null;
-				url_prefix = "http://52.10.68.119:8080"
-
+				
 				$("#fill_in_the_blank_btn").click(function() {
 				    $.ajax({
 				    	type: "GET",
@@ -66,18 +71,24 @@
 			       $('button').removeClass("ui-btn-active");
 
 			       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
+			       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].question);
+			       $("#fill_in_the_blank_question_audio").trigger('play');
 
 			       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
 			       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
+			       $("#fill_in_the_blank_answer1_audio").attr("src",'get/tts/?text=' + data[current_question].answers[0].word);
 
 			       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
 			       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
+			       $("#fill_in_the_blank_answer2_audio").attr("src",'get/tts/?text=' + data[current_question].answers[1].word);
 
 			       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
 			       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
+			       $("#fill_in_the_blank_answer3_audio").attr("src",'get/tts/?text=' + data[current_question].answers[2].word);
 
 			       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
 			       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
+			       $("#fill_in_the_blank_answer4_audio").attr("src",'get/tts/?text=' + data[current_question].answers[3].word);
 
 			       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
 			       		$('#fill_in_the_blank_answer1').addClass("ui-btn-active");
@@ -126,9 +137,6 @@
 			});
 		</script>
 	</head> 
-	<%
-	String theme="d";
-	%>
 	<body> 
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" data-theme="<%= theme%>">
@@ -149,41 +157,47 @@
 			Fill in the blank!
 		</div><!-- /header -->
 		<div data-role="content" data-theme="<%= theme%>">
-			<h1 onclick="document.getElementById('audio').play();" id="fill_in_the_blank_question"></h1>
-			<audio src="resources/sounds/calm.fill_blank.question.mp3" id='audio'></audio>
+			<h1 onclick="document.getElementById('fill_in_the_blank_question_audio').play();" id="fill_in_the_blank_question"></h1>
+			<audio type="audio/vnd.wav" id='fill_in_the_blank_question_audio'></audio>
 			<div class="ui-grid-c">
 				<div class="ui-block-a">
-					<div>
-						<div id="fill_in_the_blank_answer1_img" style="height:200px;text-align:center; background: url(http://52.10.68.119:8080/images/cool.png); background-size:100%;">
+					<div onclick="document.getElementById('fill_in_the_blank_answer1_audio').play();">
+						<div id="fill_in_the_blank_answer1_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
 						</div>
+						<audio id='fill_in_the_blank_answer1_audio' type="audio/vnd.wav"></audio>
 					</div>
 				</div>
 				<div class="ui-block-b">
-					<div>
-						<div id="fill_in_the_blank_answer2_img" style="height:200px;text-align:center; background: url(http://52.10.68.119:8080/images/cool.png); background-size:100%;">
+					<div onclick="document.getElementById('fill_in_the_blank_answer2_audio').play();">
+						<div id="fill_in_the_blank_answer2_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
 						</div>
+						<audio id='fill_in_the_blank_answer2_audio'></audio>
 					</div>
 				</div>
 				<div class="ui-block-c">
-					<div>
-						<div id="fill_in_the_blank_answer3_img" style="height:200px;text-align:center; background: url(http://52.10.68.119:8080/images/cool.png); background-size:100%;">
+					<div onclick="document.getElementById('fill_in_the_blank_answer3_audio').play();">
+						<div id="fill_in_the_blank_answer3_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" >
 						</div>
+						<audio id='fill_in_the_blank_answer3_audio'></audio>
 					</div>
 				</div>
 				<div class="ui-block-d">
-					<div>
-						<div id="fill_in_the_blank_answer4_img" style="height:200px;text-align:center; background: url(http://52.10.68.119:8080/images/cool.png); background-size:100%;">
+					<div onclick="document.getElementById('fill_in_the_blank_answer4_audio').play();">
+						<div id="fill_in_the_blank_answer4_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
 						</div>
+						<audio id='fill_in_the_blank_answer4_audio'></audio>
 					</div>
 				</div>
 			</div><!-- /grid-b -->
 			<fieldset class="ui-grid-c">
-				<div class="ui-block-a"><button id="fill_in_the_blank_answer1" /></div>
-				<div class="ui-block-b"><button id="fill_in_the_blank_answer2" /></div>
-				<div class="ui-block-c"><button id="fill_in_the_blank_answer3" /></div>
-				<div class="ui-block-d"><button id="fill_in_the_blank_answer4" /></div>
+				<div class="ui-block-a"><button style="font-size:20px;" id="fill_in_the_blank_answer1" /></div>
+				<div class="ui-block-b"><button style="font-size:20px;" id="fill_in_the_blank_answer2" /></div>
+				<div class="ui-block-c"><button style="font-size:20px;" id="fill_in_the_blank_answer3" /></div>
+				<div class="ui-block-d"><button style="font-size:20px;" id="fill_in_the_blank_answer4" /></div>
 			</fieldset>
-			<button class="next_question" style="font-size:20px;">Next Question!</button>
+			<fieldset class="ui-grid">
+				<button class="next_question" style="font-size:25px;">Next Question!</button>
+			</fieldset>
 		</div><!-- /content -->
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
 			<a href="#one" data-role="button">Home</a>
