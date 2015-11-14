@@ -58,9 +58,9 @@ public class HomeController {
 		return kids;
 	}
 
-    @RequestMapping(value="/addProfile", method=RequestMethod.POST)
+    @RequestMapping(value="/profile", method=RequestMethod.POST)
     public String addProfile(@ModelAttribute("newKid") Kid kid, Model model) {
-    	System.out.println("new kid added: " + kid.getName());
+    	System.out.println("new kid added: " + kid.getName() + " icon: " + kid.getIcon());
         profilesDAO.addKid(kid);
         return "profile";
     }
