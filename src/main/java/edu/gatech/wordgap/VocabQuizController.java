@@ -96,7 +96,7 @@ public class VocabQuizController {
 	{
         //response.getOutputStream().write(audio);
         HttpHeaders header = new HttpHeaders();
-        header.setContentType(new MediaType("audio", "vnd.wav"));
+        header.setContentType(new MediaType("audio", "wav"));
         
         byte[] audio = null;
         
