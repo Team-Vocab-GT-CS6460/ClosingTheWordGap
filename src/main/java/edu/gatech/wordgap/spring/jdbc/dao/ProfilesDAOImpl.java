@@ -16,10 +16,11 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 
 	private static final String kidsFile = "kids1.json";
 	private int newKidId = 1;
+	private List<Kid> kidsArray = new ArrayList<Kid>();
 
 	@Override
 	public List<Kid> getKids() {
-		ArrayList<Kid> kidsArray = new ArrayList<Kid>();
+		ArrayList<Kid> array = new ArrayList<Kid>();
 		try {
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(new FileReader(kidsFile));
@@ -41,7 +42,7 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 				kid.setIcon(icon);
 				kid.setPoints(Integer.parseInt(points));
 				kid.setLastActivity(Long.parseLong(lastActivity));
-				kidsArray.add(kid);
+				array.add(kid);
 				if(id >= newKidId) {
 					newKidId = id + 1;
 				}
@@ -49,17 +50,17 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 		} catch(Exception e) {
 			System.err.println("error while reading stored profiles: " + e.getLocalizedMessage());
 		}
+		kidsArray = array;
 
-		return kidsArray;
+		return array;
 	}
 
 	@Override
 	public void addKid(Kid newKid) {
-		List<Kid> kids = getKids();
 		newKid.setId(newKidId);
-		kids.add(newKid);
+		kidsArray.add(newKid);
 		JSONArray array = new JSONArray();
-		for(Kid kid : kids) {
+		for(Kid kid : kidsArray) {
 			JSONObject obj = new JSONObject();
 			obj.put("id", kid.getId());
 			obj.put("name", kid.getName());
@@ -77,6 +78,17 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 		} catch (Exception e) {
 			System.err.println("error while saving new profile: " + e.getLocalizedMessage());
 		}
+	}
+
+	@Override
+	public Kid getKid(int id) {
+		for(Kid kid : kidsArray) {
+			if(kid.getId() == id) {
+				return kid;
+			}
+		}
+		System.err.println("error while getting kid: " + id);
+		return null;
 	}
 
 }

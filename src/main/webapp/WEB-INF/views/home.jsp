@@ -45,7 +45,7 @@
 		String url_prefix="http://52.10.68.119:8080";
 		%>
 		<script>
-			url_prefix = "http://52.10.68.119:8080"
+			url_prefix = "http://52.10.68.119:8080";
 
 			$(document).ready(function() {
 				current_question = -1;
@@ -133,14 +133,14 @@
 				    $('#fill_in_the_blank_answer2').off('click');
 				    $('#fill_in_the_blank_answer3').off('click');
 				    $('#fill_in_the_blank_answer4').off('click');
-				}
+				};
 			});
 		</script>
 	</head> 
 	<body> 
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Closing the Word Gap</div><!-- /header -->
+		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name} id ${kid.id}!</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">	
 			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn">Fill in the blank</a></p>
@@ -190,10 +190,10 @@
 				</div>
 			</div><!-- /grid-b -->
 			<fieldset class="ui-grid-c">
-				<div class="ui-block-a"><button style="font-size:20px;" id="fill_in_the_blank_answer1" /></div>
-				<div class="ui-block-b"><button style="font-size:20px;" id="fill_in_the_blank_answer2" /></div>
-				<div class="ui-block-c"><button style="font-size:20px;" id="fill_in_the_blank_answer3" /></div>
-				<div class="ui-block-d"><button style="font-size:20px;" id="fill_in_the_blank_answer4" /></div>
+				<div class="ui-block-a"><button style="font-size:20px;" id="fill_in_the_blank_answer1"></button></div>
+				<div class="ui-block-b"><button style="font-size:20px;" id="fill_in_the_blank_answer2"></button></div>
+				<div class="ui-block-c"><button style="font-size:20px;" id="fill_in_the_blank_answer3"></button></div>
+				<div class="ui-block-d"><button style="font-size:20px;" id="fill_in_the_blank_answer4"></button></div>
 			</fieldset>
 			<fieldset class="ui-grid">
 				<button class="next_question" style="font-size:25px;">Next Question!</button>

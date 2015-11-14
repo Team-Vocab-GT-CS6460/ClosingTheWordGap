@@ -8,5 +8,6 @@ public interface ProfilesDAO {
 
 	List<Kid> getKids();
 	void addKid(Kid newKid);
+	Kid getKid(int id);
 
 }

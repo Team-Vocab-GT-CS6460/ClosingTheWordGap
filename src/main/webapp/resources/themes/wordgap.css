@@ -1,0 +1,28 @@
+.dog img {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.cat img {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.profiles {
+    display: flex;
+}
+.profiles .ui-btn {
+    margin: 15px;
+}
+input#name {
+    background: white;
+}
+.profiles-radio {
+	display: flex;
+}
+.profiles-radio img {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    padding-left: 25px;
+}
