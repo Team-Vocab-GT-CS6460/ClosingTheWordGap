@@ -28,7 +28,7 @@
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="profiles" class="profiles"></div>
 
-			    <form:form action="profile" commandName="newKid" method="post">
+			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()">
 				    <div data-role="collapsible">
 
 						<h4>Add a new kid</h4>
