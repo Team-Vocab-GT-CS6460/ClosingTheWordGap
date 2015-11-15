@@ -58,7 +58,35 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 	@Override
 	public void addKid(Kid newKid) {
 		newKid.setId(newKidId);
-		kidsArray.add(newKid);
+		boolean success = kidsArray.add(newKid);
+		if(!success) {
+			System.err.println("error while adding kid: " + newKidId);
+		}
+		saveProfile();
+	}
+
+	@Override
+	public Kid getKid(int id) {
+		for(Kid kid : kidsArray) {
+			if(kid.getId() == id) {
+				return kid;
+			}
+		}
+		System.err.println("error while getting kid: " + id);
+		return null;
+	}
+
+	@Override
+	public void removeKid(int id) {
+		Kid kid = getKid(id);
+		boolean success = kidsArray.remove(kid);
+		if(!success) {
+			System.err.println("error while removing kid: " + id);
+		}
+		saveProfile();
+	}
+
+	private void saveProfile() {
 		JSONArray array = new JSONArray();
 		for(Kid kid : kidsArray) {
 			JSONObject obj = new JSONObject();
@@ -76,19 +104,8 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 			fileWriter.flush();
 			fileWriter.close();
 		} catch (Exception e) {
-			System.err.println("error while saving new profile: " + e.getLocalizedMessage());
+			System.err.println("error while saving profile: " + e.getLocalizedMessage());
 		}
-	}
-
-	@Override
-	public Kid getKid(int id) {
-		for(Kid kid : kidsArray) {
-			if(kid.getId() == id) {
-				return kid;
-			}
-		}
-		System.err.println("error while getting kid: " + id);
-		return null;
 	}
 
 }
