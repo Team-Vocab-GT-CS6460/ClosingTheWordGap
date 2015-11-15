@@ -25,8 +25,12 @@
 			$(document).ready(function() {
 				current_question = -1;
 				var data = null;
+				var correct_answers = 0;
+				var wrong_answers = 0;
 				
 				$("#fill_in_the_blank_btn").click(function() {
+					correct_answers = 0;
+				 	wrong_answers = 0;
 				    $.ajax({
 				    	type: "GET",
 				        url: "get/quiz",
@@ -42,66 +46,78 @@
 				$(".next_question").click(function() {
 
 				   current_question = current_question + 1;
+				   if(current_question < data.length) {
+				       $('button').removeClass("ui-btn-active");
 
-			       $('button').removeClass("ui-btn-active");
+				       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
+				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].question);
+				       $("#fill_in_the_blank_question_audio").trigger('play');
 
-			       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
-			       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].question);
-			       $("#fill_in_the_blank_question_audio").trigger('play');
+				       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
+				       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
+				       $("#fill_in_the_blank_answer1_audio").attr("src",'get/tts/?text=' + data[current_question].answers[0].word);
 
-			       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
-			       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
-			       $("#fill_in_the_blank_answer1_audio").attr("src",'get/tts/?text=' + data[current_question].answers[0].word);
+				       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
+				       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
+				       $("#fill_in_the_blank_answer2_audio").attr("src",'get/tts/?text=' + data[current_question].answers[1].word);
 
-			       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
-			       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
-			       $("#fill_in_the_blank_answer2_audio").attr("src",'get/tts/?text=' + data[current_question].answers[1].word);
+				       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
+				       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
+				       $("#fill_in_the_blank_answer3_audio").attr("src",'get/tts/?text=' + data[current_question].answers[2].word);
 
-			       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
-			       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
-			       $("#fill_in_the_blank_answer3_audio").attr("src",'get/tts/?text=' + data[current_question].answers[2].word);
+				       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
+				       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
+				       $("#fill_in_the_blank_answer4_audio").attr("src",'get/tts/?text=' + data[current_question].answers[3].word);
 
-			       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
-			       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
-			       $("#fill_in_the_blank_answer4_audio").attr("src",'get/tts/?text=' + data[current_question].answers[3].word);
+				       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
+				       		$('#fill_in_the_blank_answer1').addClass("ui-btn-active");
+							$('#fill_in_the_blank_answer1_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$(".next_question").show();
+							$.fn.disableAnswers();
+							wrong_answers = wrong_answers + 1;
+						}));
 
-			       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
-			       		$('#fill_in_the_blank_answer1').addClass("ui-btn-active");
-						$('#fill_in_the_blank_answer1_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
-						$(".next_question").show();
-						$.fn.disableAnswers();
-					}));
+				       $('#fill_in_the_blank_answer2').off('click').on('click',(function() {
+				       		$('#fill_in_the_blank_answer2').addClass("ui-btn-active");
+							$('#fill_in_the_blank_answer2_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$(".next_question").show();
+							$.fn.disableAnswers();
+							wrong_answers = wrong_answers + 1;
+						}));
 
-			       $('#fill_in_the_blank_answer2').off('click').on('click',(function() {
-			       		$('#fill_in_the_blank_answer2').addClass("ui-btn-active");
-						$('#fill_in_the_blank_answer2_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
-						$(".next_question").show();
-						$.fn.disableAnswers();
-					}));
+				       $('#fill_in_the_blank_answer3').off('click').on('click',(function() {
+				       		$('#fill_in_the_blank_answer3').addClass("ui-btn-active");
+							$('#fill_in_the_blank_answer3_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$(".next_question").show();
+							$.fn.disableAnswers();
+							wrong_answers = wrong_answers + 1;
+						}));
 
-			       $('#fill_in_the_blank_answer3').off('click').on('click',(function() {
-			       		$('#fill_in_the_blank_answer3').addClass("ui-btn-active");
-						$('#fill_in_the_blank_answer3_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
-						$(".next_question").show();
-						$.fn.disableAnswers();
-					}));
-
-			       $('#fill_in_the_blank_answer4').off('click').on('click',(function() {
-			       		$('#fill_in_the_blank_answer4').addClass("ui-btn-active");
-						$('#fill_in_the_blank_answer4_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
-						$(".next_question").show();
-						$.fn.disableAnswers();
-					}));
+				       $('#fill_in_the_blank_answer4').off('click').on('click',(function() {
+				       		$('#fill_in_the_blank_answer4').addClass("ui-btn-active");
+							$('#fill_in_the_blank_answer4_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$(".next_question").show();
+							$.fn.disableAnswers();
+							wrong_answers = wrong_answers + 1;
+						}));
 
 
-			       $('#fill_in_the_blank_answer' + data[current_question].correctAnswer).off('click').on('click',(function() {
-			       		$('#fill_in_the_blank_answer' + data[current_question].correctAnswer).addClass("ui-btn-active");
-						$('#fill_in_the_blank_answer' + data[current_question].correctAnswer + '_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:green; opacity:0.7;'><i class='ion-checkmark'  style='font-size: 13em;'></i></div>");
-						$(".next_question").show();
-						$.fn.disableAnswers();
-					}));
-				   
-				   $(".next_question").hide();
+				       $('#fill_in_the_blank_answer' + data[current_question].correctAnswer).off('click').on('click',(function() {
+				       		$('#fill_in_the_blank_answer' + data[current_question].correctAnswer).addClass("ui-btn-active");
+							$('#fill_in_the_blank_answer' + data[current_question].correctAnswer + '_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:green; opacity:0.7;'><i class='ion-checkmark'  style='font-size: 13em;'></i></div>");
+							$(".next_question").show();
+							$.fn.disableAnswers();
+							correct_answers = correct_answers + 1;
+						}));
+
+					   $(".next_question").hide();
+					}
+					else{
+						$('#fill_in_the_blank_complete_correct').empty().append(correct_answers);
+						$('#fill_in_the_blank_complete_wrong').empty().append(wrong_answers);
+						$.mobile.pageContainer.pagecontainer("change", "#fill_in_the_blank_complete", {});
+					}
+
 				});
 				$.fn.disableAnswers = function() {
 				    $('#fill_in_the_blank_answer1').off('click');
@@ -118,7 +134,7 @@
 		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">	
-			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn">Fill in the blank</a></p>
+			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn" style="font-size:20px;">Fill in the blank</a></p>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
@@ -178,6 +194,29 @@
 			<a href="#one" data-role="button">Back to Activities</a>
 		</div><!-- /footer -->
 	</div><!-- /page two -->
-	
+
+	<div data-role="page" id="fill_in_the_blank_complete" data-theme="<%= theme%>">
+		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!</div><!-- /header -->
+
+		<div data-role="content" data-theme="<%= theme%>">
+			<table style="font-size:60px; margin: 0 auto;">
+				<tr>
+					<th>Correct&nbsp;</th>
+					<td><span id="fill_in_the_blank_complete_correct"></span></td>
+				</tr>
+				<tr>
+					<th>Wrong&nbsp;</td>
+					<td><span id="fill_in_the_blank_complete_wrong"></span></td>
+				</tr>
+			</table>
+			<br />
+			<a href="#one" data-role="button" style="font-size:25px;">Done</a>
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
+			<a href="#one" data-role="button">Back to Activities</a>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+
 	</body>
 </html>
