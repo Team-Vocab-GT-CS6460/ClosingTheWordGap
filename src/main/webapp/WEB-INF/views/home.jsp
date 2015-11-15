@@ -4,42 +4,15 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Closing the Word Gap</title> 
+		<title>Closing the Word Gap</title>
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+		<link rel="stylesheet" href="resources/themes/wordgap.css" />
 		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
 		<script src="resources/javascript/jquery.contenthover.js"></script>
-		<style>
-			html, body {
-			    height : 100%;
-			}
-			.ui-header {
-			    height : 45px;
-			    font-size: 35px;
-			    text-align:center;
-			    padding-bottom:5px;
-			    padding-top:5px;
-			}
-			.ui-header .header_h1 {
-			}
-			.ui-content {
-			    position : absolute;
-			    top      : 60px;
-			    right    : 0;
-			    bottom   : 50px;
-			    left     : 0;
-			}
-			.ui-footer {
-			    position : absolute;
-			    bottom   : 0;
-			    left     : 0;
-			    width    : 100%;
-			    height   : 50px;
-			}
-		</style>
 		<%
 		String theme="d";
 		String url_prefix="http://52.10.68.119:8080";

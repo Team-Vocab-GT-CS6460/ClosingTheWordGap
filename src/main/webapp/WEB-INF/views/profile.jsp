@@ -4,11 +4,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="resources/themes/wordgap.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+		<link rel="stylesheet" href="resources/themes/wordgap.css" />
 		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
 		<title>Profiles</title>
@@ -21,9 +21,7 @@
 		<!-- Start of second page: #two -->
 		<div data-role="page" id="profile" data-theme="<%= theme%>">
 	
-			<div data-role="header" data-theme="<%= theme%>">
-				<h1>Closing the Word Gap</h1>
-			</div><!-- /header -->
+			<div data-role="header" data-theme="<%= theme%>">Closing the Word Gap</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="profiles" class="profiles"></div>
