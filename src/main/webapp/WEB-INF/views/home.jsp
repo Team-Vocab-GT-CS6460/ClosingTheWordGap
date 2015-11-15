@@ -119,8 +119,8 @@
 			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn">Fill in the blank</a></p>
 		</div><!-- /content -->
 		
-		<div data-role="footer" data-theme="<%= theme%>">
-			<h4></h4>
+		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
+			<a href="/" data-role="button">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
@@ -173,7 +173,7 @@
 			</fieldset>
 		</div><!-- /content -->
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" data-role="button">Home</a>
+			<a href="#one" data-role="button">Back to Activities</a>
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 	
