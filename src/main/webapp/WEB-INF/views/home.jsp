@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="resources/themes/wordgap.css" />
 		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
-		<script src="resources/javascript/jquery.contenthover.js"></script>
 		<%
 		String theme="d";
 		String url_prefix="http://52.10.68.119:8080";
@@ -20,6 +19,9 @@
 		<script>
 			url_prefix = "http://52.10.68.119:8080";
 
+			function goToProfile() {
+				window.location="profile";
+			}
 			$(document).ready(function() {
 				current_question = -1;
 				var data = null;
@@ -120,7 +122,7 @@
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="profile" data-role="button">Back to Profiles</a>
+			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
