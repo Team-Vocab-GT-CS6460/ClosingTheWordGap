@@ -27,6 +27,8 @@
 				var wrong_answers = 0;
 				
 				$("#fill_in_the_blank_btn").click(function() {
+					correct_answers = 0;
+				 	wrong_answers = 0;
 				    $.ajax({
 				    	type: "GET",
 				        url: "get/quiz",
