@@ -120,7 +120,7 @@
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="/profile" data-role="button">Back to Profiles</a>
+			<a href="profile" data-role="button">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
