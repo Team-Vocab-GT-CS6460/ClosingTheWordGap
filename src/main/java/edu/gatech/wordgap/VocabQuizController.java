@@ -1,8 +1,11 @@
 package edu.gatech.wordgap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,27 +52,60 @@ public class VocabQuizController {
 		List<VocabWord> wordList = quizDAO.getWordList();
 		for(VocabWord word: wordList)
 		{
-			word.setFill_blank(word.getFill_blank().replace(word.getWord(), "________"));
+			String blank = word.getFill_blank();
+			word.setFill_blank(blank.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
 		}
 		List<VocabQuizQuestion> questionList = new ArrayList<VocabQuizQuestion>();
 		
+		Map<String,Boolean> questionMap = new HashMap<String,Boolean>();
+		
 		for(int i=0; i<10; i++)
 		{
-			int index = randomGenerator.nextInt(wordList.size());
+			boolean repick = true;
+			int index = -1;
+			
+			while(repick)
+			{
+				index = randomGenerator.nextInt(wordList.size());
+				Boolean found = questionMap.get(wordList.get(index).getWord());
+				if(found == null)
+				{
+					repick=false;
+					questionMap.put(wordList.get(index).getWord(), new Boolean(true));
+				}
+			}
+				
 			VocabWord word = wordList.get(index);
-	        word.setFill_blank(word.getFill_blank().replace(word.getWord(), "________"));
+			String blank = word.getFill_blank();
+			word.setFill_blank(blank.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
 	        VocabQuizQuestion question = new VocabQuizQuestion();
 	        question.setQuestion(word.getFill_blank());
+	        question.setTtsString(blank.replaceAll("(?i)"+Pattern.quote("________"), "blank"));
 	        VocabQuizAnswer[] answers = new VocabQuizAnswer[4];
 	        VocabQuizAnswer answer = buildAnswerOption(word);
 	        answers[new Random().nextInt(answers.length)] = answer;
+	        Map<String,Boolean> answerMap = new HashMap<String,Boolean>();
+	        answerMap.put(word.getWord(), new Boolean(true));
 	        
 	        for(int j=0; j<4; j++)
 	        {
+	        	
 	        	if(answers[j] == null)
 	        	{
-	        		index = randomGenerator.nextInt(wordList.size());
-	        		answers[j] = buildAnswerOption(wordList.get(index));
+	        		boolean repicka = true;
+	    			int indexa = -1;
+	    			
+	    			while(repicka)
+	    			{
+	    				indexa = randomGenerator.nextInt(wordList.size());
+	    				Boolean found = answerMap.get(wordList.get(indexa).getWord());
+	    				if(found == null)
+	    				{
+	    					repicka=false;
+	    					answerMap.put(wordList.get(indexa).getWord(), new Boolean(true));
+	    				}
+	    			}
+	        		answers[j] = buildAnswerOption(wordList.get(indexa));
 	        	}
 	        	else
 	        	{
