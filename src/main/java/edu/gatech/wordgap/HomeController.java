@@ -77,8 +77,4 @@ public class HomeController {
 		return "home";
 	}
 
-    @RequestMapping(value = "/mobile_template", method = RequestMethod.GET)
-	public String mobile_template(Locale locale, Model model) {
-		return "mobile_template";
-	}	
 }
