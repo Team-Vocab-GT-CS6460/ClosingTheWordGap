@@ -39,7 +39,7 @@
 						Icon:
 						<div class="profiles-radio">
 							<input type="radio" name="icon" value="dog" checked> <img src=http://images.clipartpanda.com/cute-dog-clipart-13289830681766660254dog.svg.hi.png />
-							<input type="radio" name="icon" value="cat"> <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYslakVXRM31dpE3NCKM8ek1Idgt8NGdNQN_-WR10lhOa4TAq />
+							<input type="radio" name="icon" value="cat"> <img src=http://cat-pictures.clipartonline.net/_/rsrc/1359117040773/Cute-Kittens-Images-Page-1/cat-image%2032.png />
 						</div>
 
 						<input type="submit" value=" Add " class="ui-link ui-btn ui-shadow ui-corner-all" />
@@ -73,7 +73,7 @@
 				        .append("<img src=http://images.clipartpanda.com/cute-dog-clipart-13289830681766660254dog.svg.hi.png />")
 				        .button();
 				    $("[class='cat']")
-				        .append("<img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYslakVXRM31dpE3NCKM8ek1Idgt8NGdNQN_-WR10lhOa4TAq />")
+				        .append("<img src=http://cat-pictures.clipartonline.net/_/rsrc/1359117040773/Cute-Kittens-Images-Page-1/cat-image%2032.png />")
 				        .button();
 				}
 			});
