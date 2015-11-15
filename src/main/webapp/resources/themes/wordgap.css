@@ -11,9 +11,11 @@
 }
 .profiles {
     display: flex;
+    overflow: auto;
 }
 .profiles .ui-btn {
-    margin: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 input#name {
     background: white;
