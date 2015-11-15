@@ -113,14 +113,14 @@
 	<body> 
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name} id ${kid.id}!</div><!-- /header -->
+		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">	
 			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn">Fill in the blank</a></p>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="/" data-role="button">Back to Profiles</a>
+			<a href="/profile" data-role="button">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
