@@ -54,6 +54,14 @@ public class HomeController {
 		return "profile";
 	}
 
+    @RequestMapping(value="/profile", method=RequestMethod.POST)
+    public String addProfile(@ModelAttribute("newKid") Kid kid, Model model) {
+		logger.info("adding kid: " + kid.getName() + " icon: " + kid.getIcon());
+        profilesDAO.addKid(kid);
+		model.addAttribute("newKid", new Kid());
+        return "profile";
+    }
+
 	@RequestMapping(value = "/get/profiles", method = RequestMethod.GET)
 	public @ResponseBody List<Kid> getProfiles(Locale locale, Model model) {
 		logger.info("getting profiles");
@@ -61,12 +69,14 @@ public class HomeController {
 		return kids;
 	}
 
-    @RequestMapping(value="/profile", method=RequestMethod.POST)
-    public String addProfile(@ModelAttribute("newKid") Kid kid, Model model) {
-		logger.info("adding kid: " + kid.getName() + " icon: " + kid.getIcon());
-        profilesDAO.addKid(kid);
-        return "profile";
-    }
+	@RequestMapping(value = "/delete/profile", method = RequestMethod.GET)
+	public String getProfiles(Locale locale, Model model, @RequestParam("kid") String kid) {
+		logger.info("deleting profile");
+		int id = Integer.parseInt(kid);
+		profilesDAO.removeKid(id);
+		model.addAttribute("newKid", new Kid());
+		return "profile";
+	}
 
 	@RequestMapping(value = "/activities", method = RequestMethod.POST)
 	public String activities(Locale locale, Model model, @RequestParam("kid") String kid) {

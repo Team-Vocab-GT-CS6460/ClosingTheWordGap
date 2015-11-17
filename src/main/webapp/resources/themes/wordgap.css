@@ -29,6 +29,10 @@ input#name {
     margin: 5px;
     padding-left: 25px;
 }
+.ui-popup {
+	width: 275px;
+    height: 205px;
+}
 
 /* home.jsp */
 .ui-header {
@@ -37,6 +41,10 @@ input#name {
     text-align:center;
     padding-bottom:5px;
     padding-top:5px;
+}
+.ui-header .ui-title {
+	padding: 0;
+	margin: 0;
 }
 .ui-content {
     position : absolute;
