@@ -80,15 +80,18 @@ public class VocabQuizController {
 
 	        VocabQuizQuestion question = new VocabQuizQuestion();
 
-			index = randomGenerator.nextInt(4);
+			index = randomGenerator.nextInt(5);
 			if(index == 0)
 				sentence = word.getSentence1();
 			else if(index == 1) 
 				sentence = word.getSentence2();
 			else if(index == 2)
 				sentence = word.getSentence3();
-			else 
+			else if(index == 3)
 				sentence = word.getFill_blank();
+			else 
+				sentence = word.getAnalogy();
+			System.out.println("index = " + index);
 			
 	        question.setQuestion(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
 	        question.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote("________"), "blank"));

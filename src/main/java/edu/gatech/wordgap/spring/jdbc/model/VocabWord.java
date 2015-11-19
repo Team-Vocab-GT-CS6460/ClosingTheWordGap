@@ -8,7 +8,14 @@ public class VocabWord {
 	  private String part_speech;
 	  private String definition;
 	  private String fill_blank;
+	  private String analogy;
 	  
+	public String getAnalogy() {
+		return analogy;
+	}
+	public void setAnalogy(String analogy) {
+		this.analogy = analogy;
+	}
 	public String getWord() {
 		return word;
 	}
