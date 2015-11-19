@@ -76,11 +76,22 @@ public class VocabQuizController {
 			}
 				
 			VocabWord word = wordList.get(index);
-			String blank = word.getFill_blank();
-			word.setFill_blank(blank.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
+			String sentence = null;
+
 	        VocabQuizQuestion question = new VocabQuizQuestion();
-	        question.setQuestion(word.getFill_blank());
-	        question.setTtsString(blank.replaceAll("(?i)"+Pattern.quote("________"), "blank"));
+
+			index = randomGenerator.nextInt(4);
+			if(index == 0)
+				sentence = word.getSentence1();
+			else if(index == 1) 
+				sentence = word.getSentence2();
+			else if(index == 2)
+				sentence = word.getSentence3();
+			else 
+				sentence = word.getFill_blank();
+			
+	        question.setQuestion(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
+	        question.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote("________"), "blank"));
 	        VocabQuizAnswer[] answers = new VocabQuizAnswer[4];
 	        VocabQuizAnswer answer = buildAnswerOption(word);
 	        answers[new Random().nextInt(answers.length)] = answer;
