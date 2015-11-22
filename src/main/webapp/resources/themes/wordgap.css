@@ -29,10 +29,6 @@ input#name {
     margin: 5px;
     padding-left: 25px;
 }
-.ui-popup {
-	width: 275px;
-    height: 205px;
-}
 
 /* home.jsp */
 .ui-header {
@@ -60,6 +56,35 @@ input#name {
     width    : 100%;
     height   : 50px;
 }
+.ui-popup {
+	width: 275px;
+    height: 205px;
+}
 html, body {
     height : 100%;
+}
+
+/* stats.jsp */
+.stats {
+    display: flex;
+    overflow: auto;
+}
+.stats .ui-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.indicators {
+    display: flex;
+}
+.indicators a {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+.indicators h2 {
+	font-size: 75px;
+	margin: 0;
+}
+.indicators h3 {
+    margin: 5px;
 }

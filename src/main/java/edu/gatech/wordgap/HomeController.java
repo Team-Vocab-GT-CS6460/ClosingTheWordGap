@@ -87,4 +87,14 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/stats", method = RequestMethod.GET)
+	public String stats(Locale locale, Model model) {
+		logger.info("Welcome to Stats!");
+		model.addAttribute("bestCategory", "Synonyms");
+		model.addAttribute("bestCategoryEfficiency", "85%");
+		model.addAttribute("worstCategory", "Antonyms");
+		model.addAttribute("worstCategoryEfficiency", "52%");
+		return "stats";
+	}
+
 }

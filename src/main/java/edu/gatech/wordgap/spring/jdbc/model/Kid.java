@@ -6,7 +6,6 @@ public class Kid {
 	private String name;
 	private String icon;
 	private String language = "English";
-	private int points;
 	private long lastActivity;
 
 	public int getId() {
@@ -32,12 +31,6 @@ public class Kid {
 	}
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-	public int getPoints() {
-		return points;
-	}
-	public void setPoints(int points) {
-		this.points = points;
 	}
 	public long getLastActivity() {
 		return lastActivity;

@@ -10,5 +10,6 @@ public interface ProfilesDAO {
 	Kid getKid(int id);
 	void addKid(Kid newKid);
 	void removeKid(int id);
+	void updateKidLastActivity(int kidId);
 
 }

@@ -42,7 +42,7 @@
 					</div>
 			    </form:form>
 
-				<a href="#" data-role="button" data-icon="grid" style="text-align: left;"> View Stats </a>
+				<a href="stats" data-role="button" data-icon="grid" style="text-align: left;"> View Stats </a>
 			</div><!-- /content -->
 
 			<div data-role="footer" data-theme="<%= theme%>"></div><!-- /footer -->
