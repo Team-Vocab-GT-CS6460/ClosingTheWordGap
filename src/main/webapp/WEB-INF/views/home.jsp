@@ -24,17 +24,19 @@
 			}
 
 			$(document).ready(function() {
-				current_question = -1;
+				
 				var data = null;
 				var correct_answers = 0;
 				var wrong_answers = 0;
 				
-				$("#fill_in_the_blank_btn").click(function() {
+				$(".fill_in_the_blank_btn").click(function() {
 					correct_answers = 0;
 				 	wrong_answers = 0;
+				 	current_question = -1;
+
 				    $.ajax({
 				    	type: "GET",
-				        url: "get/quiz",
+				        url: "get/quiz?" + Math.floor((Math.random() * 1000) + 1),
 					    dataType: "json",
 					    cache: false
 				    }).then(function(json_data) {
@@ -152,8 +154,8 @@
 
 		<div data-role="content" data-theme="<%= theme%>">
 			<h1 style="text-align:center;">Language</h1><br />
-			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn" style="font-size:25px;">English</a></p>
-			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn" style="font-size:25px;">Espa&ntilde;ol</a></p>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">English</a></p>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Espa&ntilde;ol</a></p>
 		</div><!-- /content -->
 
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
@@ -221,7 +223,7 @@
 			</fieldset>
 		</div><!-- /content -->
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" data-role="button">Back to Activities</a>
+			<!-- <a href="#one" data-role="button">Back to Activities</a> -->
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 
@@ -240,11 +242,13 @@
 				</tr>
 			</table>
 			<br />
-			<a href="#one" data-role="button" style="font-size:25px;">Done</a>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Start Again</a></p>
+			<a href="#one" data-role="button" style="font-size:25px;">Change Language</a>
+			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish (go back to Profiles)</a>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" data-role="button">Back to Activities</a>
+			<a href="#one" onclick="goToProfile()"  data-role="button">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
