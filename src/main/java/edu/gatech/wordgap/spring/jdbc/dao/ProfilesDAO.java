@@ -11,5 +11,6 @@ public interface ProfilesDAO {
 	void addKid(Kid newKid);
 	void removeKid(int id);
 	void updateKidLastActivity(int kidId);
+	void updateKidStrategy(int kidId, String strategy);
 
 }

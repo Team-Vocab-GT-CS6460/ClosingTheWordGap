@@ -42,7 +42,7 @@
 					</div>
 			    </form:form>
 
-				<a href="stats" data-role="button" data-icon="grid" style="text-align: left;"> View Stats </a>
+				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align: left;"> View Stats </a>
 			</div><!-- /content -->
 
 			<div data-role="footer" data-theme="<%= theme%>"></div><!-- /footer -->
@@ -107,6 +107,9 @@
 					location.reload();
 				}
 			});
+		}
+		function goToStats() {
+			window.location="stats";
 		}
 
 		</script>

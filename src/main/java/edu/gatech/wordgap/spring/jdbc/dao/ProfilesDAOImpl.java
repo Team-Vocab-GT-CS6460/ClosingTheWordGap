@@ -14,7 +14,7 @@ import edu.gatech.wordgap.spring.jdbc.model.Kid;
 
 public class ProfilesDAOImpl implements ProfilesDAO {
 
-	private static final String kidsFile = "kids4.json";
+	private static final String kidsFile = "kids5.json";
 	private int newKidId = 1;
 	private List<Kid> kidsArray = new ArrayList<Kid>();
 
@@ -35,6 +35,7 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 				String icon = jsonObject.get("icon").toString();
 				String language = jsonObject.get("language").toString();
 				String lastActivity = jsonObject.get("lastActivity").toString();
+				String strategy = jsonObject.get("strategy").toString();
 
 				Kid kid = new Kid();
 				int id = Integer.parseInt(id_str);
@@ -43,6 +44,7 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 				kid.setLanguage(language);
 				kid.setIcon(icon);
 				kid.setLastActivity(Long.parseLong(lastActivity));
+				kid.setLearningStrategy(strategy);
 
 				array.add(kid);
 
@@ -104,6 +106,7 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 				obj.put("icon", kid.getIcon());
 				obj.put("language", kid.getLanguage());
 				obj.put("lastActivity", kid.getLastActivity());
+				obj.put("strategy", kid.getLearningStrategy());
 				kids.add(obj);
 			}
 			FileWriter fileWriter = new FileWriter(kidsFile);
@@ -120,6 +123,14 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 		System.out.println("updateKidLastActivity");
 		Kid kid = getKid(kidId);
 		kid.setLastActivity(System.currentTimeMillis());
+		saveProfiles();
+	}
+
+	@Override
+	public void updateKidStrategy(int kidId, String strategy) {
+		System.out.println("updateKidStrategy");
+		Kid kid = getKid(kidId);
+		kid.setLearningStrategy(strategy);
 		saveProfiles();
 	}
 

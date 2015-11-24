@@ -55,6 +55,10 @@ input#name {
     left     : 0;
     width    : 100%;
     height   : 50px;
+    text-align: right;
+}
+.ui-footer a {
+    margin-right: 20px;
 }
 .ui-popup {
 	width: 275px;
@@ -79,12 +83,17 @@ html, body {
 .indicators a {
     margin-left: auto;
     margin-right: auto;
+	margin-top: 20px;
     width: 200px;
 }
-.indicators h2 {
+.indicators h1 {
 	font-size: 75px;
+	font-weight: bold;
 	margin: 0;
 }
 .indicators h3 {
+    margin: 5px;
+}
+.indicators p {
     margin: 5px;
 }

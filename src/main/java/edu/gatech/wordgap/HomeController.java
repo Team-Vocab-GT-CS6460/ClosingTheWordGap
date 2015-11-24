@@ -56,7 +56,7 @@ public class HomeController {
 
     @RequestMapping(value="/profile", method=RequestMethod.POST)
     public String addProfile(@ModelAttribute("newKid") Kid kid, Model model) {
-		logger.info("adding kid: " + kid.getName() + " icon: " + kid.getIcon());
+		logger.info("adding kid: " + kid.getName());
         profilesDAO.addKid(kid);
 		model.addAttribute("newKid", new Kid());
         return "profile";
@@ -70,7 +70,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/delete/profile", method = RequestMethod.GET)
-	public String getProfiles(Locale locale, Model model, @RequestParam("kid") String kid) {
+	public String deleteProfile(Locale locale, Model model, @RequestParam("kid") String kid) {
 		logger.info("deleting profile");
 		int id = Integer.parseInt(kid);
 		profilesDAO.removeKid(id);
@@ -83,6 +83,7 @@ public class HomeController {
 		logger.info("Welcome to Activities!");
 		int id = Integer.parseInt(kid);
 		Kid kidObj = profilesDAO.getKid(id);
+		logger.info(kidObj.getName());
 		model.addAttribute("kid", kidObj);
 		return "home";
 	}
@@ -95,6 +96,29 @@ public class HomeController {
 		model.addAttribute("worstCategory", "Antonyms");
 		model.addAttribute("worstCategoryEfficiency", "52%");
 		return "stats";
+	}
+
+	@RequestMapping(value = "/kid_stats", method = RequestMethod.POST)
+	public String kidStats(Locale locale, Model model, @RequestParam("kid") String kid) {
+		logger.info("Welcome to Kid Stats!");
+		int id = Integer.parseInt(kid);
+		Kid kidObj = profilesDAO.getKid(id);
+		logger.info(kidObj.getName());
+		model.addAttribute("kid", kidObj);
+		model.addAttribute("bestCategory", "Synonyms");
+		model.addAttribute("bestCategoryEfficiency", "85%");
+		model.addAttribute("worstCategory", "Antonyms");
+		model.addAttribute("worstCategoryEfficiency", "52%");
+		return "kid_stats";
+	}
+
+	@RequestMapping(value = "/save/strategy", method = RequestMethod.GET)
+	public String saveStrategy(Locale locale, Model model, @RequestParam("kid") String kid, @RequestParam("strategy") String strategy) {
+		logger.info("saving strategy " + strategy + " for kid " + kid);
+		int id = Integer.parseInt(kid);
+		profilesDAO.updateKidStrategy(id, strategy);
+		model.addAttribute("newKid", new Kid());
+		return "profile";
 	}
 
 }

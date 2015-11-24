@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="resources/themes/wordgap.css" />
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		<title>Stats</title>
+		<title>Kid Stats</title>
 	</head>
 	<%
 	String theme="d";
@@ -19,59 +19,50 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">Overall Stats</div>
+			<div data-role="header" data-theme="<%= theme%>">${kid.name} Stats</div>
 	
 			<div data-role="content" data-theme="<%= theme%>">	
-				<div id="stats" class="stats"></div>
-
-				<hr>
-
 				<div class="indicators">
 					<a data-role="button" data-theme="<%= theme%>">
-						<p>Best Category</p>
 						<h3>${bestCategory}</h3>
 						<h1 style="color: green;">${bestCategoryEfficiency}</h1>
 					</a>
 					<a data-role="button" data-theme="<%= theme%>">
-						<p>Room for Improvement</p>
 						<h3>${worstCategory}</h3>
 						<h1 style="color: orange;">${worstCategoryEfficiency}</h1>
 					</a>
 				</div>
+
+				<div data-role="strategies">
+				   <label for="strategy" class="strategy">Learning Strategy:</label>
+				   <select name="strategy" id="strategy">
+				      <option value="smart">Smart Tutoring</option>
+				      <option value="synonyms">Focus on Synonyms</option>
+				      <option value="antonyms">Focus on Antonyms</option>
+				   </select>
+				</div>
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
-				<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
+				<a data-role="button" onclick="goToStats()">Done</a>
 			</div>
 		</div>
 
 		<script type="text/javascript">
 	
 		$(document).ready(function() {
+			$('#strategy').val("${kid.learningStrategy}").selectmenu('refresh', true);
+		});
+		function goToStats() {
+			var kid = ${kid.id};
+			var strategy = $('#strategy').val();
 			$.ajax({
-				url : 'get/profiles',
+				url : 'save/strategy',
+				data: {kid: kid, strategy: strategy},
 				success : function(kids) {
-					var html = '';
-					for(var i = 0; i < kids.length; i++) {
-						var kid = kids[i];
-						html += '<form:form class="kid_stats" action="kid_stats" method="post">';
-						html += '<a class=' + kid['icon'] + ' href="javascript:;" onclick="parentNode.parentNode.submit();">' + kid['name'] + '</a>';
-						html += '<input type="hidden" name="kid" value="' + kid['id'] + '" />';
-						html += '</form:form>';
-					}
-					$('#stats').html(html);
-				    $("[class='dog']")
-				        .append("<img src=http://images.clipartpanda.com/cute-dog-clipart-13289830681766660254dog.svg.hi.png />")
-				        .button();
-				    $("[class='cat']")
-				        .append("<img src=http://cat-pictures.clipartonline.net/_/rsrc/1359117040773/Cute-Kittens-Images-Page-1/cat-image%2032.png />")
-				        .button();
+					window.location = "stats";
 				}
 			});
-		});
-		function goToProfile() {
-			//update last activity
-			window.location="profile";
 		}
 
 		</script>

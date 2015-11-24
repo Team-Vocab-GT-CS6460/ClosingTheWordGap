@@ -1,12 +1,12 @@
 package edu.gatech.wordgap.spring.jdbc.model;
 
-
 public class Kid {
 	private int id;
 	private String name;
 	private String icon;
 	private String language = "English";
 	private long lastActivity;
+	private String learningStrategy = "smart";
 
 	public int getId() {
 		return id;
@@ -37,6 +37,12 @@ public class Kid {
 	}
 	public void setLastActivity(long lastActivity) {
 		this.lastActivity = lastActivity;
+	}
+	public String getLearningStrategy() {
+		return learningStrategy;
+	}
+	public void setLearningStrategy(String learningStrategy) {
+		this.learningStrategy = learningStrategy;
 	}
 
 }
