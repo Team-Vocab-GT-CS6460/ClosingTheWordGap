@@ -22,18 +22,21 @@
 			function goToProfile() {
 				window.location="profile";
 			}
+
 			$(document).ready(function() {
-				current_question = -1;
+				
 				var data = null;
 				var correct_answers = 0;
 				var wrong_answers = 0;
 				
-				$("#fill_in_the_blank_btn").click(function() {
+				$(".fill_in_the_blank_btn").click(function() {
 					correct_answers = 0;
 				 	wrong_answers = 0;
+				 	current_question = -1;
+
 				    $.ajax({
 				    	type: "GET",
-				        url: "get/quiz",
+				        url: "get/quiz?" + Math.floor((Math.random() * 1000) + 1),
 					    dataType: "json",
 					    cache: false
 				    }).then(function(json_data) {
@@ -43,35 +46,48 @@
 				    });					
 				});
 
+				$(".audio_click").click(function() {
+					var element = "#" + this.id.replace("img","audio");
+					if(typeof $(element).attr("src") == 'undefined'){
+						$(element).attr("src",$(element).attr("src-temp"));
+					}
+				});
+
 				$(".next_question").click(function() {
+
+				   $('#wrong_answer_definition').empty();
 
 				   current_question = current_question + 1;
 				   if(current_question < data.length) {
 				       $('button').removeClass("ui-btn-active");
 
 				       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
-				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].question);
-				       $("#fill_in_the_blank_question_audio").trigger('play');
+				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].ttsString);
 
 				       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
 				       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
-				       $("#fill_in_the_blank_answer1_audio").attr("src",'get/tts/?text=' + data[current_question].answers[0].word);
+				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[0].word);
+					   $("#fill_in_the_blank_answer1_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
 				       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
-				       $("#fill_in_the_blank_answer2_audio").attr("src",'get/tts/?text=' + data[current_question].answers[1].word);
+				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[1].word);
+				   	   $("#fill_in_the_blank_answer2_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
 				       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
-				       $("#fill_in_the_blank_answer3_audio").attr("src",'get/tts/?text=' + data[current_question].answers[2].word);
+				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[2].word);
+				       $("#fill_in_the_blank_answer3_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
 				       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
-				       $("#fill_in_the_blank_answer4_audio").attr("src",'get/tts/?text=' + data[current_question].answers[3].word);
+				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[3].word);
+				       $("#fill_in_the_blank_answer4_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
 				       		$('#fill_in_the_blank_answer1').addClass("ui-btn-active");
 							$('#fill_in_the_blank_answer1_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$('#wrong_answer_definition').append(data[current_question].answers[0].word + ": " + data[current_question].answers[0].definition );
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
@@ -80,6 +96,7 @@
 				       $('#fill_in_the_blank_answer2').off('click').on('click',(function() {
 				       		$('#fill_in_the_blank_answer2').addClass("ui-btn-active");
 							$('#fill_in_the_blank_answer2_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$('#wrong_answer_definition').append(data[current_question].answers[1].word + ": " + data[current_question].answers[1].definition );
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
@@ -88,6 +105,7 @@
 				       $('#fill_in_the_blank_answer3').off('click').on('click',(function() {
 				       		$('#fill_in_the_blank_answer3').addClass("ui-btn-active");
 							$('#fill_in_the_blank_answer3_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$('#wrong_answer_definition').append(data[current_question].answers[2].word + ": " + data[current_question].answers[2].definition );
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
@@ -96,6 +114,7 @@
 				       $('#fill_in_the_blank_answer4').off('click').on('click',(function() {
 				       		$('#fill_in_the_blank_answer4').addClass("ui-btn-active");
 							$('#fill_in_the_blank_answer4_img').append("<div style='position:relative; top:0px; width:100%; height:100%; background:red; opacity:0.7;'><i class='ion-close'  style='font-size: 13em;'></i></div>");
+							$('#wrong_answer_definition').append(data[current_question].answers[3].word + ": " + data[current_question].answers[3].definition );
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
@@ -133,10 +152,12 @@
 	<div data-role="page" id="one" data-theme="<%= theme%>">
 		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!</div><!-- /header -->
 
-		<div data-role="content" data-theme="<%= theme%>">	
-			<p><a href="#fill_in_the_blank" data-role="button" id="fill_in_the_blank_btn" style="font-size:20px;">Fill in the blank</a></p>
+		<div data-role="content" data-theme="<%= theme%>">
+			<h1 style="text-align:center;">Language</h1><br />
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">English</a></p>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Espa&ntilde;ol</a></p>
 		</div><!-- /content -->
-		
+
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
 			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
 		</div><!-- /footer -->
@@ -148,33 +169,41 @@
 			Fill in the blank!
 		</div><!-- /header -->
 		<div data-role="content" data-theme="<%= theme%>">
-			<h1 onclick="document.getElementById('fill_in_the_blank_question_audio').play();" id="fill_in_the_blank_question"></h1>
-			<audio type="audio/vnd.wav" id='fill_in_the_blank_question_audio'></audio>
+			<div class="ui-grid-a">
+				<div class="ui-block-a" style="width:95%">
+					<h1 onclick="document.getElementById('fill_in_the_blank_question_audio').play();" id="fill_in_the_blank_question"></h1>
+				</div>
+				<div class="ui-block-b" style="width:5%; text-align: right;">
+					<h1 onclick="document.getElementById('fill_in_the_blank_question_audio').play();" style="font-size:40px;"><i class="ion-volume-medium"></i></h1>
+				</div>
+			</div>
+
+			<audio id='fill_in_the_blank_question_audio'></audio>
 			<div class="ui-grid-c">
 				<div class="ui-block-a">
 					<div onclick="document.getElementById('fill_in_the_blank_answer1_audio').play();">
-						<div id="fill_in_the_blank_answer1_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
+						<div id="fill_in_the_blank_answer1_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" class="audio_click">
 						</div>
-						<audio id='fill_in_the_blank_answer1_audio' type="audio/vnd.wav"></audio>
+						<audio id='fill_in_the_blank_answer1_audio'></audio>
 					</div>
 				</div>
 				<div class="ui-block-b">
 					<div onclick="document.getElementById('fill_in_the_blank_answer2_audio').play();">
-						<div id="fill_in_the_blank_answer2_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
+						<div id="fill_in_the_blank_answer2_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" class="audio_click">
 						</div>
 						<audio id='fill_in_the_blank_answer2_audio'></audio>
 					</div>
 				</div>
 				<div class="ui-block-c">
 					<div onclick="document.getElementById('fill_in_the_blank_answer3_audio').play();">
-						<div id="fill_in_the_blank_answer3_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" >
+						<div id="fill_in_the_blank_answer3_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" class="audio_click">
 						</div>
 						<audio id='fill_in_the_blank_answer3_audio'></audio>
 					</div>
 				</div>
 				<div class="ui-block-d">
 					<div onclick="document.getElementById('fill_in_the_blank_answer4_audio').play();">
-						<div id="fill_in_the_blank_answer4_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;">
+						<div id="fill_in_the_blank_answer4_img" style="height:200px;text-align:center; background: url(<%= url_prefix%>/images/cool.png); background-size:100%;" class="audio_click">
 						</div>
 						<audio id='fill_in_the_blank_answer4_audio'></audio>
 					</div>
@@ -186,12 +215,15 @@
 				<div class="ui-block-c"><button style="font-size:20px;" id="fill_in_the_blank_answer3"></button></div>
 				<div class="ui-block-d"><button style="font-size:20px;" id="fill_in_the_blank_answer4"></button></div>
 			</fieldset>
+			<div>
+				<h1 id="wrong_answer_definition" style="font-size: 20px; white-space: nowrap;"></h1>
+			</div>
 			<fieldset class="ui-grid">
-				<button class="next_question" style="font-size:25px;">Next Question!</button>
+				<button class="next_question" style="font-size:20px;">Next Question!</button>
 			</fieldset>
 		</div><!-- /content -->
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" data-role="button">Back to Activities</a>
+			<!-- <a href="#one" data-role="button">Back to Activities</a> -->
 		</div><!-- /footer -->
 	</div><!-- /page two -->
 
@@ -210,11 +242,13 @@
 				</tr>
 			</table>
 			<br />
-			<a href="#one" data-role="button" style="font-size:25px;">Done</a>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Start Again</a></p>
+			<a href="#one" data-role="button" style="font-size:25px;">Change Language</a>
+			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish (go back to Profiles)</a>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" data-role="button">Back to Activities</a>
+			<a href="#one" onclick="goToProfile()"  data-role="button">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
