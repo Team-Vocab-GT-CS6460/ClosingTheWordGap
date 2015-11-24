@@ -24,9 +24,11 @@ import com.att.api.oauth.OAuthToken;
 import com.att.api.speech.service.TtsService;
 
 import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
+import edu.gatech.wordgap.spring.jdbc.model.Question;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizAnswer;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizQuestion;
 import edu.gatech.wordgap.spring.jdbc.model.VocabWord;
+import edu.gatech.wordgap.spring.jdbc.model.Word;
 
 @Controller
 public class VocabQuizController {
@@ -47,6 +49,8 @@ public class VocabQuizController {
 	@RequestMapping(value = "/get/quiz", method = RequestMethod.GET)
 	public @ResponseBody List<VocabQuizQuestion> getVocabQuiz()
 	{
+		//doStuff();
+		
 		Random randomGenerator = new Random();
 	    
 		List<VocabWord> wordList = quizDAO.getWordList();
@@ -189,6 +193,14 @@ public class VocabQuizController {
 			ex.printStackTrace();
 		}
 		return new HttpEntity<byte[]>(audio, header);
+	}
+	
+	private void doStuff()
+	{
+		List<Question> questions = quizDAO.getQuestions();
+		List<Word> words = quizDAO.getWords();
+		
+		
 	}
 	
 }
