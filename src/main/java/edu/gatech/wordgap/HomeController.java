@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +80,15 @@ public class HomeController {
 		return "profile";
 	}
 
-	@RequestMapping(value = "/activities", method = RequestMethod.POST)
-	public String activities(Locale locale, Model model, @RequestParam("kid") String kid) {
+	@RequestMapping(value = "/activities", method = {RequestMethod.POST, RequestMethod.GET} )
+	public String activities(Locale locale, Model model, @RequestParam(value = "kid", required = false) String kid, HttpServletRequest request) {
 		logger.info("Welcome to Activities!");
+		if(kid=="" || kid == null){
+			kid = request.getSession().getAttribute("kid").toString();
+		}
+		else{
+			request.getSession().setAttribute("kid",kid);
+		}
 		int id = Integer.parseInt(kid);
 		Kid kidObj = profilesDAO.getKid(id);
 		model.addAttribute("kid", kidObj);
