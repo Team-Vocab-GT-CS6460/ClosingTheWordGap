@@ -91,10 +91,9 @@ public class VocabQuizController {
 				sentence = word.getFill_blank();
 			else 
 				sentence = word.getAnalogy();
-			System.out.println("index = " + index);
 			
 	        question.setQuestion(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
-	        question.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote("________"), "blank"));
+	        question.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "blank"));
 	        VocabQuizAnswer[] answers = new VocabQuizAnswer[4];
 	        VocabQuizAnswer answer = buildAnswerOption(word);
 	        answers[new Random().nextInt(answers.length)] = answer;
