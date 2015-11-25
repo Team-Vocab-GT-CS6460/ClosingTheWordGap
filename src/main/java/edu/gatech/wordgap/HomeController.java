@@ -120,11 +120,13 @@ public class HomeController {
 		return "kid_stats";
 	}
 
-	@RequestMapping(value = "/save/strategy", method = RequestMethod.GET)
-	public String saveStrategy(Locale locale, Model model, @RequestParam("kid") String kid, @RequestParam("strategy") String strategy) {
-		logger.info("saving strategy " + strategy + " for kid " + kid);
+	@RequestMapping(value = "/save/strategies", method = RequestMethod.GET)
+	public String saveStrategies(Locale locale, Model model, @RequestParam("kid") String kid, 
+			@RequestParam("strategyEnglish") String strategyEnglish, 
+			@RequestParam("strategySpanish") String strategySpanish) {
+		logger.info("saving strategies " + strategyEnglish + " and " + strategySpanish + " for kid " + kid);
 		int id = Integer.parseInt(kid);
-		profilesDAO.updateKidStrategy(id, strategy);
+		profilesDAO.updateKidStrategies(id, strategyEnglish, strategySpanish);
 		model.addAttribute("newKid", new Kid());
 		return "profile";
 	}

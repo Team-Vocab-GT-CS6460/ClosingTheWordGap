@@ -34,8 +34,15 @@
 				</div>
 
 				<div data-role="strategies">
-				   <label for="strategy" class="strategy">Learning Strategy:</label>
-				   <select name="strategy" id="strategy">
+				   <label for="strategyEnglish" class="strategyEnglish">Learning Strategy English:</label>
+				   <select name="strategyEnglish" id="strategyEnglish">
+				      <option value="smart">Smart Tutoring</option>
+				      <option value="synonyms">Focus on Synonyms</option>
+				      <option value="antonyms">Focus on Antonyms</option>
+				   </select>
+
+				   <label for="strategySpanish" class="strategySpanish">Learning Strategy Spanish:</label>
+				   <select name="strategySpanish" id="strategySpanish">
 				      <option value="smart">Smart Tutoring</option>
 				      <option value="synonyms">Focus on Synonyms</option>
 				      <option value="antonyms">Focus on Antonyms</option>
@@ -51,14 +58,16 @@
 		<script type="text/javascript">
 	
 		$(document).ready(function() {
-			$('#strategy').val("${kid.learningStrategy}").selectmenu('refresh', true);
+			$('#strategyEnglish').val("${kid.strategyEnglish}").selectmenu('refresh', true);
+			$('#strategySpanish').val("${kid.strategySpanish}").selectmenu('refresh', true);
 		});
 		function goToStats() {
 			var kid = ${kid.id};
-			var strategy = $('#strategy').val();
+			var strategyEnglish = $('#strategyEnglish').val();
+			var strategySpanish = $('#strategySpanish').val();
 			$.ajax({
-				url : 'save/strategy',
-				data: {kid: kid, strategy: strategy},
+				url : 'save/strategies',
+				data: {kid: kid, strategyEnglish: strategyEnglish, strategySpanish: strategySpanish},
 				success : function(kids) {
 					window.location = "stats";
 				}
