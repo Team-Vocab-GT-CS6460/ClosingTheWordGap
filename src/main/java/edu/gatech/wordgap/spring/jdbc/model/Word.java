@@ -30,4 +30,8 @@ public class Word {
 	public void setContent_area(String content_area) {
 		this.content_area = content_area;
 	}
+	@Override
+	public String toString() {
+		return word;
+	}
 }

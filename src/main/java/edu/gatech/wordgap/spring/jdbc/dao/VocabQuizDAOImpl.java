@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import edu.gatech.wordgap.spring.jdbc.model.Question;
-import edu.gatech.wordgap.spring.jdbc.model.VocabWord;
 import edu.gatech.wordgap.spring.jdbc.model.Word;
 
 
@@ -16,14 +15,6 @@ public class VocabQuizDAOImpl implements VocabQuizDAO {
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	@Override
-	public List<VocabWord> getWordList() {
-		String sql = "select * from wordgap.wordlist";
-		Object[] args = new Object[] {};
-		List<VocabWord> requestList  = jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<VocabWord>(VocabWord.class));
-		return requestList;
 	}
 
 	public List<Word> getWords() {

@@ -1,24 +1,30 @@
 package edu.gatech.wordgap.util;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import edu.gatech.wordgap.spring.jdbc.model.VocabQuizQuestion;
+import edu.gatech.wordgap.spring.jdbc.model.Question;
 
 public class MultiKeyMap {
 	
-	private VocabQuizQuestion[] questions;
-	private Map<String, Object> maps;
+	private Question[] questions;
+	private Map<String, List<Integer>> maps;
 	
-	public VocabQuizQuestion[] getQuestions() {
+	public MultiKeyMap() {
+		this.maps = new HashMap<String, List<Integer>>();
+	}
+	
+	public Question[] getQuestions() {
 		return questions;
 	}
-	public void setQuestions(VocabQuizQuestion[] questions) {
+	public void setQuestions(Question[] questions) {
 		this.questions = questions;
 	}
-	public Map<String, Object> getMaps() {
+	public Map<String, List<Integer>> getMaps() {
 		return maps;
 	}
-	public void setMaps(Map<String, Object> maps) {
+	public void setMaps(Map<String, List<Integer>> maps) {
 		this.maps = maps;
 	}
 	
