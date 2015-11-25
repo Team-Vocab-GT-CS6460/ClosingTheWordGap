@@ -158,7 +158,7 @@
 			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Espa&ntilde;ol</a></p>
 		</div><!-- /content -->
 
-		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
+		<div data-role="footer" data-theme="<%= theme%>">
 			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
 		</div><!-- /footer -->
 	</div><!-- /page one -->
@@ -222,10 +222,10 @@
 				<button class="next_question" style="font-size:20px;">Next Question!</button>
 			</fieldset>
 		</div><!-- /content -->
-		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<!-- <a href="#one" data-role="button">Back to Activities</a> -->
+		<div data-role="footer" data-theme="<%= theme%>">
+			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
 		</div><!-- /footer -->
-	</div><!-- /page two -->
+	</div><!-- /page fill_in_the_blank -->
 
 	<div data-role="page" id="fill_in_the_blank_complete" data-theme="<%= theme%>">
 		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!</div><!-- /header -->
@@ -237,20 +237,20 @@
 					<td><span id="fill_in_the_blank_complete_correct"></span></td>
 				</tr>
 				<tr>
-					<th>Wrong&nbsp;</td>
+					<th>Wrong&nbsp;</th>
 					<td><span id="fill_in_the_blank_complete_wrong"></span></td>
 				</tr>
 			</table>
 			<br />
 			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Start Again</a></p>
 			<a href="#one" data-role="button" style="font-size:25px;">Change Language</a>
-			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish (go back to Profiles)</a>
+			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish</a>
 		</div><!-- /content -->
 		
-		<div data-role="footer" data-theme="<%= theme%>" style="text-align:right; padding-right:20px;">
-			<a href="#one" onclick="goToProfile()"  data-role="button">Back to Profiles</a>
+		<div data-role="footer" data-theme="<%= theme%>">
+			<!-- <a data-role="button" onclick="goToProfile()">Back to Profiles</a> -->
 		</div><!-- /footer -->
-	</div><!-- /page one -->
+	</div><!-- /page fill_in_the_blank_complete -->
 
 	</body>
 </html>
