@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 		<link rel="stylesheet" href="resources/themes/wordgap.css" />
+		<link rel="icon" type="image/png" href="resources/themes/images/cwg_ico.png">
 		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
 		<%
@@ -150,7 +151,9 @@
 	<body> 
 	<!-- Start of first page: #one -->
 	<div data-role="page" id="one" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!</div><!-- /header -->
+		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!
+			<img src="resources/themes/images/cwg_logo.png" class="favicon">
+		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">
 			<h1 style="text-align:center;">Language</h1><br />
@@ -167,7 +170,9 @@
 
 		<div data-role="header" data-theme="<%= theme%>">
 			Fill in the blank!
+			<img src="resources/themes/images/cwg_logo.png" class="favicon">
 		</div><!-- /header -->
+
 		<div data-role="content" data-theme="<%= theme%>">
 			<div class="ui-grid-a">
 				<div class="ui-block-a" style="width:95%">
@@ -228,7 +233,9 @@
 	</div><!-- /page fill_in_the_blank -->
 
 	<div data-role="page" id="fill_in_the_blank_complete" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!</div><!-- /header -->
+		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!
+			<img src="resources/themes/images/cwg_logo.png" class="favicon">
+		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">
 			<table style="font-size:60px; margin: 0 auto;">

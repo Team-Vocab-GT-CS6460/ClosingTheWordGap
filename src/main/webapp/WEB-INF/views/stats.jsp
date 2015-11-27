@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 		<link rel="stylesheet" href="resources/themes/wordgap.css" />
+		<link rel="icon" type="image/png" href="resources/themes/images/cwg_ico.png">
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<title>Stats</title>
@@ -19,7 +20,9 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">Overall Stats</div>
+			<div data-role="header" data-theme="<%= theme%>">Overall Stats
+				<img src="resources/themes/images/cwg_logo.png" class="favicon">
+			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="stats" class="stats"></div>
