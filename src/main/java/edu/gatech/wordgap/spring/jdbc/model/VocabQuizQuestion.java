@@ -1,6 +1,7 @@
 package edu.gatech.wordgap.spring.jdbc.model;
 
 public class VocabQuizQuestion {
+	private int qid;
 	private String question;
 	private String ttsString;
 	private int correctAnswer;
@@ -29,6 +30,12 @@ public class VocabQuizQuestion {
 	}
 	public void setAnswers(VocabQuizAnswer[] answers) {
 		this.answers = answers;
+	}
+	public int getQid() {
+		return qid;
+	}
+	public void setQid(int qid) {
+		this.qid = qid;
 	}
 	
 }

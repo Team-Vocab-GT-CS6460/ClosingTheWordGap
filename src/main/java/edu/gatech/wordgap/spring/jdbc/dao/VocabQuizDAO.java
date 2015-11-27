@@ -10,5 +10,7 @@ public interface VocabQuizDAO {
 	public List<Word> getWords();
 	
 	public List<Question> getQuestions();
+	
+	public void recordResponse(String sid, String qid, String word, boolean correct);
 
 }

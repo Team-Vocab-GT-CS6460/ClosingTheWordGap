@@ -5,7 +5,14 @@ public class Question {
 	private String keywords;
 	private String content_area;
 	private String vocab;
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getKeywords() {
 		return keywords;
 	}

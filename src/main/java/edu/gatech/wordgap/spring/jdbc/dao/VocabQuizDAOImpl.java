@@ -30,5 +30,12 @@ public class VocabQuizDAOImpl implements VocabQuizDAO {
 		List<Question> questionList  = jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<Question>(Question.class));
 		return questionList;
 	}
+	
+	public void recordResponse(String sid, String qid, String word, boolean correct)
+	{
+		String sql = "insert into wordgap.scores (student_id, question_id, word, correct) values (?,?,?,?)";
+		Object[] args = new Object[] {sid, qid, word, correct};
+		jdbcTemplate.update(sql, args);
+	}
 
 }
