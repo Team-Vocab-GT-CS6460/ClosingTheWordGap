@@ -1,9 +1,12 @@
 package edu.gatech.wordgap;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.gatech.wordgap.spring.jdbc.dao.ProfilesDAO;
+import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
 import edu.gatech.wordgap.spring.jdbc.model.Kid;
+import edu.gatech.wordgap.spring.jdbc.model.Question;
+import edu.gatech.wordgap.spring.jdbc.model.Score;
+import edu.gatech.wordgap.spring.jdbc.model.Stat;
 
 /**
  * Handles requests for the application home page.
@@ -30,6 +37,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	private @Autowired ProfilesDAO profilesDAO;
+	private @Autowired VocabQuizDAO quizDAO;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -103,6 +111,15 @@ public class HomeController {
 		model.addAttribute("bestCategoryEfficiency", "85%");
 		model.addAttribute("worstCategory", "Antonyms");
 		model.addAttribute("worstCategoryEfficiency", "52%");
+		List<Score> scores = quizDAO.getScores();
+		List<Integer> params = new ArrayList<Integer>();
+		List<Question> questions = new ArrayList<Question>();
+		for(Score score : scores)
+			params.add(score.getQuestion_id());
+		if(params.size() > 0)
+			questions = quizDAO.getQuestions(params);
+		List<Stat> stats = buildStatistics(scores, questions);
+		model.addAttribute("allStats", stats);
 		return "stats";
 	}
 
@@ -117,7 +134,50 @@ public class HomeController {
 		model.addAttribute("bestCategoryEfficiency", "85%");
 		model.addAttribute("worstCategory", "Antonyms");
 		model.addAttribute("worstCategoryEfficiency", "52%");
+		List<Score> scores = quizDAO.getScoresById(id);
+		List<Integer> params = new ArrayList<Integer>();
+		List<Question> questions = new ArrayList<Question>();
+		for(Score score : scores)
+			params.add(score.getQuestion_id());
+		if(params.size() > 0)
+			questions = quizDAO.getQuestions(params);
+		List<Stat> stats = buildStatistics(scores, questions);
+		model.addAttribute("allStats", stats);
 		return "kid_stats";
+	}
+
+
+	private List<Stat> buildStatistics(List<Score> scores,
+			List<Question> questions) {
+		Map<Integer, Question> qMap = new HashMap<Integer, Question>();
+		Map<String, Stat> statMap = new HashMap<String, Stat>();
+		for(Question q : questions)
+			qMap.put(q.getId(), q);
+		for(Score s: scores)
+		{
+			int qid = s.getQuestion_id();
+			Question q = qMap.get(qid);
+			for(String k : q.getKeywordsSplit()){
+				Stat stat = statMap.get(k.trim());
+				if(stat == null)
+				{
+					stat = new Stat();
+					stat.setName(k.trim());
+					stat.setCorrect(0);
+					stat.setTotal(0);
+				}
+				int correct = stat.getCorrect();
+				int total = stat.getTotal();
+				
+				stat.setTotal(total + 1);
+				if(s.getCorrect())
+				{
+					stat.setCorrect(correct + 1);
+				}
+				statMap.put(k.trim(), stat);
+			}
+		}
+		return new ArrayList<Stat> (statMap.values());
 	}
 
 	@RequestMapping(value = "/save/strategies", method = RequestMethod.GET)

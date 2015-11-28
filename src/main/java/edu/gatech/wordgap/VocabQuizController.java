@@ -50,9 +50,13 @@ public class VocabQuizController {
 	}
 	*/
 	@RequestMapping(value = "/put/score", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
-	public void recordQuisResponse(@RequestParam("word") String word, @RequestParam("sid") String sid,
-			@RequestParam("qid") String qid, @RequestParam("correct") boolean correct){
+	public void recordQuisResponse(@RequestParam("word") String word, @RequestParam("sid") int sid,
+			@RequestParam("qid") int qid, @RequestParam("correct") boolean correct){
 		quizDAO.recordResponse(sid, qid, word, correct);
+	}
+	
+	public static MultiKeyMap getMap() {
+		return map;
 	}
 	
 	@RequestMapping(value = "/get/tts", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
