@@ -61,6 +61,7 @@
 		<script type="text/javascript">
 	
 		$(document).ready(function() {
+			var leco = ${allStats};
 			$('#strategyEnglish').val("${kid.strategyEnglish}").selectmenu('refresh', true);
 			$('#strategySpanish').val("${kid.strategySpanish}").selectmenu('refresh', true);
 		});
