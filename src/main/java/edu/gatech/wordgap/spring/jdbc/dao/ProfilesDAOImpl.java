@@ -50,8 +50,8 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 					String icon = jsonObject.get("icon").toString();
 					String language = jsonObject.get("language").toString();
 					String lastActivity = jsonObject.get("lastActivity").toString();
-					String strategyEnglish = jsonObject.get("strategyEnglish").toString();
-					String strategySpanish = jsonObject.get("strategySpanish").toString();
+					String strategy = jsonObject.get("strategy").toString();
+					String activity = jsonObject.get("activity").toString();
 	
 					Kid kid = new Kid();
 					int id = Integer.parseInt(id_str);
@@ -60,8 +60,8 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 					kid.setLanguage(language);
 					kid.setIcon(icon);
 					kid.setLastActivity(Long.parseLong(lastActivity));
-					kid.setStrategyEnglish(strategyEnglish);
-					kid.setStrategySpanish(strategySpanish);
+					kid.setStrategy(strategy);
+					kid.setActivity(activity);
 	
 					array.add(kid);
 	
@@ -109,7 +109,7 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 			List<Object[]> batchArgs = new ArrayList<Object[]>();
 			for(Kid kid : kidsArray)
 			{
-				Object[] args = new Object[] {kid.getId(), kid.getName(), kid.getIcon(), kid.getLanguage(), kid.getLastActivity(), kid.getStrategyEnglish(), kid.getStrategySpanish()};
+				Object[] args = new Object[] {kid.getId(), kid.getName(), kid.getIcon(), kid.getLanguage(), kid.getLastActivity(), kid.getStrategy(), kid.getActivity()};
 				batchArgs.add(args);
 			}
 			jdbcTemplate.batchUpdate(sql, batchArgs);
@@ -169,8 +169,8 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 					obj.put("icon", kid.getIcon());
 					obj.put("language", kid.getLanguage());
 					obj.put("lastActivity", kid.getLastActivity());
-					obj.put("strategyEnglish", kid.getStrategyEnglish());
-					obj.put("strategySpanish", kid.getStrategySpanish());
+					obj.put("strategy", kid.getStrategy());
+					obj.put("activity", kid.getActivity());
 					kids.add(obj);
 				}
 				FileWriter fileWriter = new FileWriter(kidsFile);
@@ -192,11 +192,12 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 	}
 
 	@Override
-	public void updateKidStrategies(int kidId, String strategyEnglish, String strategySpanish) {
+	public void updateKidSettings(int kidId, String language, String strategy, String activity) {
 		System.out.println("updateKidStrategy");
 		Kid kid = getKid(kidId);
-		kid.setStrategyEnglish(strategyEnglish);
-		kid.setStrategySpanish(strategySpanish);
+		kid.setLanguage(language);
+		kid.setStrategy(strategy);
+		kid.setActivity(activity);
 		saveProfiles();
 	}
 

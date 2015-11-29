@@ -4,10 +4,10 @@ public class Kid {
 	private int id;
 	private String name;
 	private String icon;
-	private String language = "English";
 	private long lastActivity;
-	private String strategyEnglish = "smart";
-	private String strategySpanish = "smart";
+	private String language = "english";
+	private String strategy = "smart";
+	private String activity = "fill";
 
 	public int getId() {
 		return id;
@@ -39,17 +39,17 @@ public class Kid {
 	public void setLastActivity(long lastActivity) {
 		this.lastActivity = lastActivity;
 	}
-	public String getStrategyEnglish() {
-		return strategyEnglish;
+	public String getStrategy() {
+		return strategy;
 	}
-	public void setStrategyEnglish(String strategyEnglish) {
-		this.strategyEnglish = strategyEnglish;
+	public void setStrategy(String strategy) {
+		this.strategy = strategy;
 	}
-	public String getStrategySpanish() {
-		return strategySpanish;
+	public String getActivity() {
+		return activity;
 	}
-	public void setStrategySpanish(String strategySpanish) {
-		this.strategySpanish = strategySpanish;
+	public void setActivity(String activity) {
+		this.activity = activity;
 	}
 
 }

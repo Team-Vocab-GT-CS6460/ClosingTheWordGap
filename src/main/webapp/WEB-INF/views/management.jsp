@@ -12,7 +12,7 @@
 		<link rel="icon" type="image/png" href="resources/themes/images/cwg_ico.png">
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		<title>CWG-Stats</title>
+		<title>CWG-Management</title>
 	</head>
 	<%
 	String theme="d";
@@ -20,31 +20,16 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">Overall Stats
+			<div data-role="header" data-theme="<%= theme%>">Manage Profiles
 				<img src="resources/themes/images/cwg_logo.png" class="favicon">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="stats" class="stats"></div>
-
-				<hr>
-
-				<div class="indicators">
-					<a data-role="button" data-theme="<%= theme%>">
-						<p>Best Category</p>
-						<h3>${bestCategory}</h3>
-						<h1 style="color: green;">${bestCategoryEfficiency}</h1>
-					</a>
-					<a data-role="button" data-theme="<%= theme%>">
-						<p>Room for Improvement</p>
-						<h3>${worstCategory}</h3>
-						<h1 style="color: orange;">${worstCategoryEfficiency}</h1>
-					</a>
-				</div>
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
-				<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
+				<a data-role="button" onclick="goToProfiles()">Back to Profiles</a>
 			</div>
 		</div>
 
@@ -57,7 +42,7 @@
 					var html = '';
 					for(var i = 0; i < kids.length; i++) {
 						var kid = kids[i];
-						html += '<form:form class="kid_stats" action="kid_stats" method="post">';
+						html += '<form:form class="kid_mgt" action="kid_mgt" method="post">';
 						html += '<a class=' + kid['icon'] + ' href="javascript:;" onclick="parentNode.parentNode.submit();">' + kid['name'] + '</a>';
 						html += '<input type="hidden" name="kid" value="' + kid['id'] + '" />';
 						html += '</form:form>';
@@ -72,8 +57,8 @@
 				}
 			});
 		});
-		function goToProfile() {
-			//update last activity
+		function goToProfiles() {
+			//TODO update last activity
 			window.location="profile";
 		}
 

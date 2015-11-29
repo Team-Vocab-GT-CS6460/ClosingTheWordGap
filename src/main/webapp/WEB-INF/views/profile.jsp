@@ -27,7 +27,7 @@
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="profiles" class="profiles"></div>
 
-			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()">
+			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()" style="margin: 0;">
 				    <div data-role="collapsible">
 
 						<h4>Add a new kid</h4>
@@ -43,9 +43,12 @@
 
 						<input type="submit" value=" Add " class="ui-link ui-btn ui-shadow ui-corner-all" />
 					</div>
-			    </form:form>
+			    </form:form><!-- Add Kid -->
 
 				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align: left;"> View Stats </a>
+
+				<a data-role="button" onclick="goToManagement()" data-icon="gear" style="text-align: left;"> Manage Profiles </a>
+
 			</div><!-- /content -->
 
 			<div data-role="footer" data-theme="<%= theme%>"></div><!-- /footer -->
@@ -112,7 +115,10 @@
 			});
 		}
 		function goToStats() {
-			window.location="stats";
+			window.location = "stats";
+		}
+		function goToManagement() {
+			window.location = "management";
 		}
 
 		</script>

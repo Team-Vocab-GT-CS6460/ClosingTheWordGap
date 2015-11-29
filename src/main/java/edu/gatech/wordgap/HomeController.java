@@ -180,15 +180,33 @@ public class HomeController {
 		return new ArrayList<Stat> (statMap.values());
 	}
 
-	@RequestMapping(value = "/save/strategies", method = RequestMethod.GET)
-	public String saveStrategies(Locale locale, Model model, @RequestParam("kid") String kid, 
-			@RequestParam("strategyEnglish") String strategyEnglish, 
-			@RequestParam("strategySpanish") String strategySpanish) {
-		logger.info("saving strategies " + strategyEnglish + " and " + strategySpanish + " for kid " + kid);
+	@RequestMapping(value = "/save/settings", method = RequestMethod.GET)
+	public String saveSettings(Locale locale, Model model, 
+			@RequestParam("kid") String kid, 
+			@RequestParam("language") String language, 
+			@RequestParam("strategy") String strategy,
+			@RequestParam("activity") String activity) {
+		logger.info("saving settings " + language + ", " + activity + " and " + strategy + " for kid " + kid);
 		int id = Integer.parseInt(kid);
-		profilesDAO.updateKidStrategies(id, strategyEnglish, strategySpanish);
+		profilesDAO.updateKidSettings(id, language, strategy, activity);
 		model.addAttribute("newKid", new Kid());
 		return "profile";
+	}
+
+	@RequestMapping(value = "/management", method = RequestMethod.GET)
+	public String management(Locale locale, Model model) {
+		logger.info("Welcome to Management!");
+		return "management";
+	}
+
+	@RequestMapping(value = "/kid_mgt", method = RequestMethod.POST)
+	public String kidManagement(Locale locale, Model model, @RequestParam("kid") String kid) {
+		logger.info("Welcome to Kid Management!");
+		int id = Integer.parseInt(kid);
+		Kid kidObj = profilesDAO.getKid(id);
+		logger.info(kidObj.getName());
+		model.addAttribute("kid", kidObj);
+		return "kid_mgt";
 	}
 
 }
