@@ -16,7 +16,7 @@ import edu.gatech.wordgap.spring.jdbc.model.Kid;
 
 public class ProfilesDAOImpl implements ProfilesDAO {
 
-	private static final String kidsFile = "kids5.json";
+	private static final String kidsFile = "kids6.json";
 	private int newKidId = 1;
 	private List<Kid> kidsArray = new ArrayList<Kid>();
 	
