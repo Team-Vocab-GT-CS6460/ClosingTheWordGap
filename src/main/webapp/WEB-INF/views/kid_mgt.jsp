@@ -26,23 +26,49 @@
 	
 			<div data-role="content" data-theme="<%= theme%>">
 				<div data-role="strategies">
-				   <label for="language" class="language">Language:</label>
-				   <select name="language" id="language">
+				   <label for="print_language" class="print_language">Print Language:</label>
+				   <select name="print_language" id="print_language">
 				      <option value="english">English</option>
 				      <option value="spanish">Spanish</option>
 				   </select>
 
-				   <label for="strategy" class="strategy">Learning Strategy:</label>
-				   <select name="strategy" id="strategy">
-				      <option value="smart">Smart Tutoring</option>
-				      <option value="synonyms">Focus on Synonyms</option>
-				      <option value="antonyms">Focus on Antonyms</option>
+				   <label for="speech_language" class="speech_language">Speech Language:</label>
+				   <select name="speech_language" id="speech_language">
+				      <option value="english">English</option>
+				      <option value="spanish">Spanish</option>
 				   </select>
 
-				   <label for="activity" class="activity">Activity Type:</label>
+				   <label for="activity" class="activity">Activity:</label>
 				   <select name="activity" id="activity">
-				      <option value="fill">Fill in the blanks</option>
-				      <option value="drag">Drag and Drop</option>
+				      <option value="smart">Smart Activity</option>
+				      <option value="sentences">Sentences</option>
+				      <option value="definitions">Definitions</option>
+				      <option value="analogies">Analogies</option>
+				   </select>
+
+				   <label for="word_relationship" class="word_relationship">Word Relationship:</label>
+				   <select name="word_relationship" id="word_relationship">
+				      <option value="smart">Smart Relationship</option>
+				      <option value="synonyms">Synonyms</option>
+				      <option value="antonyms">Antonyms</option>
+				   </select>
+
+				   <label for="word_types" class="word_types">Word Type:</label>
+				   <select name="word_types" id="word_types">
+				      <option value="smart">Smart Type</option>
+				      <option value="actions">Actions</option>
+				      <option value="directional">Directional</option>
+				      <option value="adjectives">Adjectives</option>
+				      <option value="positional">Positional</option>
+				   </select>
+
+				   <label for="sentence_types" class="sentence_types">Sentence Type:</label>
+				   <select name="sentence_types" id="sentence_types">
+				      <option value="smart">Smart Type</option>
+				      <option value="definitions">Definitions</option>
+				      <option value="comparisons">Comparisons</option>
+				      <option value="causes">Causes</option>
+				      <option value="sequencing">Sequencing</option>
 				   </select>
 				</div>
 			</div>
@@ -55,23 +81,37 @@
 		<script type="text/javascript">
 	
 		$(document).ready(function() {
-			$('#language').val("${kid.language}").selectmenu('refresh', true);
-			$('#strategy').val("${kid.strategy}").selectmenu('refresh', true);
+			$('#print_language').val("${kid.print_language}").selectmenu('refresh', true);
+			$('#speech_language').val("${kid.speech_language}").selectmenu('refresh', true);
 			$('#activity').val("${kid.activity}").selectmenu('refresh', true);
+			$('#word_relationship').val("${kid.word_relationship}").selectmenu('refresh', true);
+			$('#word_types').val("${kid.word_types}").selectmenu('refresh', true);
+			$('#sentence_types').val("${kid.sentence_types}").selectmenu('refresh', true);
 		});
 		function goToMgt() {
-			var kid = ${kid.id};
-			var language = $('#language').val();
-			var strategy = $('#strategy').val();
+			var kid = ${kid.id;};
+			var print_language = $('#print_language').val();
+			var speech_language = $('#speech_language').val();
 			var activity = $('#activity').val();
+			var word_relationship = $('#word_relationship').val();
+			var word_types = $('#word_types').val();
+			var sentence_types = $('#sentence_types').val();
 			$.ajax({
 				url : 'save/settings',
-				data: {kid: kid, language: language, strategy: strategy, activity: activity},
+				data: {
+					kid: kid, 
+					print_language: print_language, 
+					speech_language: speech_language, 
+					activity: activity,
+					word_relationship: word_relationship, 
+					word_types: word_types, 
+					sentence_types: sentence_types
+				},
 				success : function(kids) {
 					window.location = "management";
 				}
 			});
-		}
+		};
 
 		</script>
 

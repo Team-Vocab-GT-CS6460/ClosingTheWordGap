@@ -7,10 +7,10 @@ public class Kid {
 	private long lastActivity;
 	private String print_language = "english";
 	private String speech_language = "english";
-	private String activity;
-	private String word_relationship;
-	private String word_types;
-	private String sentence_types;
+	private String activity = "smart";
+	private String word_relationship = "smart";
+	private String word_types = "smart";
+	private String sentence_types = "smart";
 	
 	/* 
 		id = some integer
