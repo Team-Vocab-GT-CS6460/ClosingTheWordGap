@@ -11,6 +11,7 @@ public interface ProfilesDAO {
 	void addKid(Kid newKid);
 	void removeKid(int id);
 	void updateKidLastActivity(int kidId);
-	void updateKidSettings(int kidId, String language, String strategy, String activity);
+	void updateKidSettings(int kidId, String speech_language, String print_language, 
+			String word_relationship, String word_types, String sentence_types, String activity);
 
 }

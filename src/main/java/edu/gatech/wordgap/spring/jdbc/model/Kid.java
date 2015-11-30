@@ -5,14 +5,47 @@ public class Kid {
 	private String name;
 	private String icon;
 	private long lastActivity;
-	private String language = "english";
-	private String strategy = "smart";
-	private String activity = "fill";
 	private String print_language = "english";
 	private String speech_language = "english";
+	private String activity;
+	private String word_relationship;
+	private String word_types;
+	private String sentence_types;
+	
+	/* 
+		id = some integer
+		name = their name
+		icon = their icon
+		print_language = english, spanish
+		speech_language = english, spanish
+		activity = sentences, definitions, analogies
+		word_relationships = antonyms, synonyms
+		word_types = actions, adjectives, directional, positional
+		sentence_types = definitions, comparisons, causes, sequencing
+		
+			***Everything but languages should default to null
+	 */
 
 	public String getPrint_language() {
 		return print_language;
+	}
+	public String getWord_relationship() {
+		return word_relationship;
+	}
+	public void setWord_relationship(String word_relationship) {
+		this.word_relationship = word_relationship;
+	}
+	public String getWord_types() {
+		return word_types;
+	}
+	public void setWord_types(String word_types) {
+		this.word_types = word_types;
+	}
+	public String getSentence_types() {
+		return sentence_types;
+	}
+	public void setSentence_types(String sentence_types) {
+		this.sentence_types = sentence_types;
 	}
 	public void setPrint_language(String print_language) {
 		this.print_language = print_language;
@@ -41,23 +74,11 @@ public class Kid {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public String getLanguage() {
-		return language;
-	}
-	public void setLanguage(String language) {
-		this.language = language;
-	}
 	public long getLastActivity() {
 		return lastActivity;
 	}
 	public void setLastActivity(long lastActivity) {
 		this.lastActivity = lastActivity;
-	}
-	public String getStrategy() {
-		return strategy;
-	}
-	public void setStrategy(String strategy) {
-		this.strategy = strategy;
 	}
 	public String getActivity() {
 		return activity;

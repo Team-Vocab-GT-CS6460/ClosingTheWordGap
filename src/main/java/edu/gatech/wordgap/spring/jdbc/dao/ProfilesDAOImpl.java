@@ -48,21 +48,27 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 					String id_str = jsonObject.get("id").toString();
 					String name = jsonObject.get("name").toString();
 					String icon = jsonObject.get("icon").toString();
-					String language = jsonObject.get("language").toString();
 					String lastActivity = jsonObject.get("lastActivity").toString();
-					String strategy = jsonObject.get("strategy").toString();
+					String speech_language = jsonObject.get("speech_language").toString();
+					String print_language = jsonObject.get("print_language").toString();
 					String activity = jsonObject.get("activity").toString();
+					String word_relationship = jsonObject.get("word_relationship").toString();
+					String word_types = jsonObject.get("word_types").toString();
+					String sentence_types = jsonObject.get("sentence_types").toString();
 	
 					Kid kid = new Kid();
 					int id = Integer.parseInt(id_str);
 					kid.setId(id);
 					kid.setName(name);
-					kid.setLanguage(language);
 					kid.setIcon(icon);
 					kid.setLastActivity(Long.parseLong(lastActivity));
-					kid.setStrategy(strategy);
+					kid.setSpeech_language(speech_language);
+					kid.setPrint_language(print_language);
 					kid.setActivity(activity);
-	
+					kid.setWord_relationship(word_relationship);
+					kid.setWord_types(word_types);
+					kid.setSentence_types(sentence_types);
+					
 					array.add(kid);
 	
 					if(id >= newKidId) {
@@ -105,11 +111,13 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 			String sql = "delete from wordgap.students";
 			jdbcTemplate.execute(sql);
 			
-			sql = "insert into wordgap.students values (?,?,?,?,?,?,?)";
+			sql = "insert into wordgap.students values (?,?,?,?,?,?,?,?,?,?)";
 			List<Object[]> batchArgs = new ArrayList<Object[]>();
 			for(Kid kid : kidsArray)
 			{
-				Object[] args = new Object[] {kid.getId(), kid.getName(), kid.getIcon(), kid.getLanguage(), kid.getLastActivity(), kid.getStrategy(), kid.getActivity()};
+				Object[] args = new Object[] {kid.getId(), kid.getName(), kid.getIcon(), kid.getLastActivity(), 
+						kid.getPrint_language(), kid.getSpeech_language(), kid.getActivity(), kid.getWord_relationship(),
+						kid.getWord_types(), kid.getSentence_types()};
 				batchArgs.add(args);
 			}
 			jdbcTemplate.batchUpdate(sql, batchArgs);
@@ -167,10 +175,13 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 					obj.put("id", kid.getId());
 					obj.put("name", kid.getName());
 					obj.put("icon", kid.getIcon());
-					obj.put("language", kid.getLanguage());
 					obj.put("lastActivity", kid.getLastActivity());
-					obj.put("strategy", kid.getStrategy());
+					obj.put("speech_language", kid.getSpeech_language());
+					obj.put("print_language", kid.getPrint_language());
 					obj.put("activity", kid.getActivity());
+					obj.put("word_relationship", kid.getWord_relationship());
+					obj.put("word_types",kid.getWord_types());
+					obj.put("sentence_types", kid.getSentence_types());
 					kids.add(obj);
 				}
 				FileWriter fileWriter = new FileWriter(kidsFile);
@@ -192,11 +203,15 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 	}
 
 	@Override
-	public void updateKidSettings(int kidId, String language, String strategy, String activity) {
+	public void updateKidSettings(int kidId, String speech_language, String print_language, 
+			String word_relationship, String word_types, String sentence_types, String activity) {
 		System.out.println("updateKidStrategy");
 		Kid kid = getKid(kidId);
-		kid.setLanguage(language);
-		kid.setStrategy(strategy);
+		kid.setSpeech_language(speech_language);
+		kid.setPrint_language(print_language);
+		kid.setWord_relationship(word_relationship);
+		kid.setWord_types(word_types);
+		kid.setSentence_types(sentence_types);
 		kid.setActivity(activity);
 		saveProfiles();
 	}

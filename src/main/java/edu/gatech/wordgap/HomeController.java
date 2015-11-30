@@ -183,12 +183,15 @@ public class HomeController {
 	@RequestMapping(value = "/save/settings", method = RequestMethod.GET)
 	public String saveSettings(Locale locale, Model model, 
 			@RequestParam("kid") String kid, 
-			@RequestParam("language") String language, 
-			@RequestParam("strategy") String strategy,
-			@RequestParam("activity") String activity) {
-		logger.info("saving settings " + language + ", " + activity + " and " + strategy + " for kid " + kid);
+			@RequestParam("speech_language") String speech_language,
+			@RequestParam("print_language") String print_language,
+			@RequestParam("activity") String activity,
+			@RequestParam("word_relationship") String word_relationship,
+			@RequestParam("word_types") String word_types,
+			@RequestParam("sentence_types") String sentence_types) {
+		logger.info("saving settings " + speech_language + ", " + activity + " and " + word_relationship + " for kid " + kid);
 		int id = Integer.parseInt(kid);
-		profilesDAO.updateKidSettings(id, language, strategy, activity);
+		profilesDAO.updateKidSettings(id, speech_language, print_language, word_relationship, word_types, sentence_types, activity);
 		model.addAttribute("newKid", new Kid());
 		return "profile";
 	}
