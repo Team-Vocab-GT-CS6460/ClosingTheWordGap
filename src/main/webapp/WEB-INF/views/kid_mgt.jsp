@@ -89,7 +89,7 @@
 			$('#sentence_types').val("${kid.sentence_types}").selectmenu('refresh', true);
 		});
 		function goToMgt() {
-			var kid = ${kid.id;};
+			var kid = ${kid.id};
 			var print_language = $('#print_language').val();
 			var speech_language = $('#speech_language').val();
 			var activity = $('#activity').val();
