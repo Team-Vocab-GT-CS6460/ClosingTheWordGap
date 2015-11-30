@@ -38,9 +38,8 @@ html, body {
     width: 100%;
 }
 .favicon {
-	height: 60px;
     float: left;
-    margin-top: -7px;
+    margin-top: -5px;
 }
 
 /* home.jsp */
