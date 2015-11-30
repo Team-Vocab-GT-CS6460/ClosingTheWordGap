@@ -37,7 +37,7 @@
 
 				    $.ajax({
 				    	type: "GET",
-				        url: "get/quiz?sid=2&" + Math.floor((Math.random() * 1000) + 1),
+				        url: "get/quiz?sid=1&" + Math.floor((Math.random() * 1000) + 1),
 					    dataType: "json",
 					    cache: false
 				    }).then(function(json_data) {
@@ -63,26 +63,26 @@
 				       $('button').removeClass("ui-btn-active");
 
 				       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
-				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?text=' + data[current_question].ttsString);
+				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?sid=1&text=' + data[current_question].ttsString);
 
 				       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
 				       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
-				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[0].word);
+				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[0].word);
 					   $("#fill_in_the_blank_answer1_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
 				       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
-				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[1].word);
+				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[1].word);
 				   	   $("#fill_in_the_blank_answer2_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
 				       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
-				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[2].word);
+				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[2].word);
 				       $("#fill_in_the_blank_answer3_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
 				       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
-				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?text=' + data[current_question].answers[3].word);
+				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[3].word);
 				       $("#fill_in_the_blank_answer4_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
