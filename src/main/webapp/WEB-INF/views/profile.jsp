@@ -12,7 +12,7 @@
 		<link rel="icon" type="image/png" href="resources/themes/images/cwg_ico.png">
 		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
-		<title>Profiles</title>
+		<title>CWG Profiles</title>
 	</head>
 	<%
 	String theme="d";
@@ -20,8 +20,8 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">Closing the Word Gap
-				<img src="resources/themes/images/cwg_logo.png" class="favicon">
+			<div data-role="header" data-theme="<%= theme%>">Profiles
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	

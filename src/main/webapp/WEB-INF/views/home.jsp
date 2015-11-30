@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Closing the Word Gap</title>
+		<title>CWG Quiz</title>
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
 		<link rel="stylesheet" href="resources/themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
@@ -149,28 +149,11 @@
 		</script>
 	</head> 
 	<body> 
-	<!-- Start of first page: #one -->
-	<div data-role="page" id="one" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Welcome ${kid.name}!
-			<img src="resources/themes/images/cwg_logo.png" class="favicon">
-		</div><!-- /header -->
-
-		<div data-role="content" data-theme="<%= theme%>">
-			<h1 style="text-align:center;">Language</h1><br />
-			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">English</a></p>
-			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Espa&ntilde;ol</a></p>
-		</div><!-- /content -->
-
-		<div data-role="footer" data-theme="<%= theme%>">
-			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
-		</div><!-- /footer -->
-	</div><!-- /page one -->
-
 	<div data-role="page" id="fill_in_the_blank" data-theme="<%= theme%>">
 
 		<div data-role="header" data-theme="<%= theme%>">
 			Fill in the blank!
-			<img src="resources/themes/images/cwg_logo.png" class="favicon">
+			<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">
@@ -234,7 +217,7 @@
 
 	<div data-role="page" id="fill_in_the_blank_complete" data-theme="<%= theme%>">
 		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!
-			<img src="resources/themes/images/cwg_logo.png" class="favicon">
+			<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">
@@ -250,7 +233,6 @@
 			</table>
 			<br />
 			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Start Again</a></p>
-			<a href="#one" data-role="button" style="font-size:25px;">Change Language</a>
 			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish</a>
 		</div><!-- /content -->
 		

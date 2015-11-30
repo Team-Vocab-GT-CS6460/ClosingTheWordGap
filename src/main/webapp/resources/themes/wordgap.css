@@ -34,8 +34,11 @@ html, body {
 	width: 275px;
     height: 205px;
 }
+.ui-select {
+    width: 100%;
+}
 .favicon {
-	width: 60px;
+	height: 60px;
     float: left;
     margin-top: -7px;
 }
@@ -105,4 +108,12 @@ input#name {
 }
 .indicators p {
     margin: 5px;
+}
+
+/* kid_mgt.jsp */
+.combo-box {
+	display: flex;
+}
+.combo-box label {
+    width: 200px;
 }

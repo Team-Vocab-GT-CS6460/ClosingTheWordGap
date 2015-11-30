@@ -12,7 +12,7 @@
 		<link rel="icon" type="image/png" href="resources/themes/images/cwg_ico.png">
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		<title>CWG-Management</title>
+		<title>CWG Management</title>
 	</head>
 	<%
 	String theme="d";
@@ -20,24 +20,28 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">${kid.name} Management
-				<img src="resources/themes/images/cwg_logo.png" class="favicon">
+			<div data-role="header" data-theme="<%= theme%>">${kid.name} Settings
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">
-				<div data-role="strategies">
+				<div data-role="print_language" class="combo-box">
 				   <label for="print_language" class="print_language">Print Language:</label>
 				   <select name="print_language" id="print_language">
 				      <option value="english">English</option>
 				      <option value="spanish">Spanish</option>
 				   </select>
+			   </div>
 
+				<div data-role="speech_language" class="combo-box">
 				   <label for="speech_language" class="speech_language">Speech Language:</label>
 				   <select name="speech_language" id="speech_language">
 				      <option value="english">English</option>
 				      <option value="spanish">Spanish</option>
 				   </select>
+			   </div>
 
+				<div data-role="activity" class="combo-box">
 				   <label for="activity" class="activity">Activity:</label>
 				   <select name="activity" id="activity">
 				      <option value="smart">Smart Activity</option>
@@ -45,26 +49,32 @@
 				      <option value="definitions">Definitions</option>
 				      <option value="analogies">Analogies</option>
 				   </select>
+			   </div>
 
+				<div data-role="word_relationship" class="combo-box">
 				   <label for="word_relationship" class="word_relationship">Word Relationship:</label>
 				   <select name="word_relationship" id="word_relationship">
 				      <option value="smart">Smart Relationship</option>
 				      <option value="synonyms">Synonyms</option>
 				      <option value="antonyms">Antonyms</option>
 				   </select>
+			   </div>
 
+				<div data-role="word_types" class="combo-box">
 				   <label for="word_types" class="word_types">Word Type:</label>
 				   <select name="word_types" id="word_types">
-				      <option value="smart">Smart Type</option>
+				      <option value="smart">Smart Word</option>
 				      <option value="actions">Actions</option>
 				      <option value="directional">Directional</option>
 				      <option value="adjectives">Adjectives</option>
 				      <option value="positional">Positional</option>
 				   </select>
+			   </div>
 
+				<div data-role="sentence_types" class="combo-box">
 				   <label for="sentence_types" class="sentence_types">Sentence Type:</label>
 				   <select name="sentence_types" id="sentence_types">
-				      <option value="smart">Smart Type</option>
+				      <option value="smart">Smart Sentence</option>
 				      <option value="definitions">Definitions</option>
 				      <option value="comparisons">Comparisons</option>
 				      <option value="causes">Causes</option>
