@@ -23,7 +23,9 @@ import com.att.api.oauth.OAuthService;
 import com.att.api.oauth.OAuthToken;
 import com.att.api.speech.service.TtsService;
 
+import edu.gatech.wordgap.spring.jdbc.dao.ProfilesDAO;
 import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
+import edu.gatech.wordgap.spring.jdbc.model.Kid;
 import edu.gatech.wordgap.spring.jdbc.model.Question;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizAnswer;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizQuestion;
@@ -35,6 +37,9 @@ public class VocabQuizController {
 	
 	private @Autowired
 	VocabQuizDAO quizDAO;
+	
+	private @Autowired
+	ProfilesDAO profilesDAO;
 	
 	private static List<Question> questions;
 	private static List<Word> words;
@@ -111,8 +116,12 @@ public class VocabQuizController {
 	}
 	
 	@RequestMapping(value = "/get/quiz", method = RequestMethod.GET)
-	public @ResponseBody List<VocabQuizQuestion> getVocabQuiz()
+	public @ResponseBody List<VocabQuizQuestion> getVocabQuiz(@RequestParam("sid") int sid)
 	{
+		Kid kid = profilesDAO.getKid(sid);
+		String print_lang = kid.getPrint_language();
+		String speech_lang = kid.getSpeech_language();
+		
 		if(map == null)
 			initializeMap();
 		
@@ -141,16 +150,33 @@ public class VocabQuizController {
 			
 			int qi = randomGenerator.nextInt(iList.size());
 			Question question = map.getQuestions()[iList.get(qi)];
+			
+			String sentence_es = question.getQuestion_es();
 			String sentence = question.getQuestion();
 			
 			VocabQuizQuestion vqq = new VocabQuizQuestion();
-			
 			vqq.setQid(question.getId());
-			vqq.setQuestion(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
-	        vqq.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "blank"));
+			
+			if(print_lang != null && print_lang.equalsIgnoreCase("spanish"))
+			{
+				vqq.setQuestion(sentence_es.replaceAll("(?i)"+Pattern.quote(word.getWord_es()), "________"));
+			}
+			else
+			{
+				vqq.setQuestion(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "________"));
+			}
+			
+			if(speech_lang != null && speech_lang.equalsIgnoreCase("spanish"))
+			{
+				vqq.setTtsString(sentence_es.replaceAll("(?i)"+Pattern.quote(word.getWord_es()), "blanco"));
+			}
+			else
+			{
+				vqq.setTtsString(sentence.replaceAll("(?i)"+Pattern.quote(word.getWord()), "blank"));
+			}
 	        
 	        VocabQuizAnswer[] answers = new VocabQuizAnswer[4];
-	        VocabQuizAnswer answer = buildAnswerOption(word);
+	        VocabQuizAnswer answer = buildAnswerOption(word, print_lang, speech_lang);
 	        answers[new Random().nextInt(answers.length)] = answer;
 	        Map<String,Boolean> answerMap = new HashMap<String,Boolean>();
 	        answerMap.put(word.getWord(), new Boolean(true));
@@ -173,7 +199,7 @@ public class VocabQuizController {
 	    					answerMap.put(words.get(indexa).getWord(), new Boolean(true));
 	    				}
 	    			}
-	        		answers[j] = buildAnswerOption(words.get(indexa));
+	        		answers[j] = buildAnswerOption(words.get(indexa),print_lang, speech_lang);
 	        	}
 	        	else
 	        	{
@@ -188,9 +214,16 @@ public class VocabQuizController {
 		
 	}
 	
-	private VocabQuizAnswer buildAnswerOption(Word word) {
+	private VocabQuizAnswer buildAnswerOption(Word word, String print_lang, String speech_lang) {
 		VocabQuizAnswer answer = new VocabQuizAnswer();
-		answer.setWord(word.getWord());
+		if(print_lang != null && print_lang.equalsIgnoreCase("spanish"))
+			answer.setWord(word.getWord_es());
+		else
+			answer.setWord(word.getWord());
+		if(speech_lang != null && speech_lang.equalsIgnoreCase("spanish"))
+			answer.setTtsString(word.getWord_es());
+		else
+			answer.setTtsString(word.getWord());
 		answer.setDefinition(word.getDefinition());
 		answer.setImagePath("/images/" + word.getWord() + ".png");
 		answer.setAudioPath("");

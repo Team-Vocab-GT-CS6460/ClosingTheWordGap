@@ -37,7 +37,7 @@
 
 				    $.ajax({
 				    	type: "GET",
-				        url: "get/quiz?" + Math.floor((Math.random() * 1000) + 1),
+				        url: "get/quiz?sid=2&" + Math.floor((Math.random() * 1000) + 1),
 					    dataType: "json",
 					    cache: false
 				    }).then(function(json_data) {

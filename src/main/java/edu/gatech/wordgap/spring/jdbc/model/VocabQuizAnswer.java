@@ -5,7 +5,14 @@ public class VocabQuizAnswer {
 	private String definition;
 	private String imagePath;
 	private String audioPath;
+	private String ttsString;
 	
+	public String getTtsString() {
+		return ttsString;
+	}
+	public void setTtsString(String ttsString) {
+		this.ttsString = ttsString;
+	}
 	public String getWord() {
 		return word;
 	}

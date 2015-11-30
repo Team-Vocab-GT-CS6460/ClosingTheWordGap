@@ -8,7 +8,21 @@ public class Kid {
 	private String language = "english";
 	private String strategy = "smart";
 	private String activity = "fill";
+	private String print_language = "english";
+	private String speech_language = "english";
 
+	public String getPrint_language() {
+		return print_language;
+	}
+	public void setPrint_language(String print_language) {
+		this.print_language = print_language;
+	}
+	public String getSpeech_language() {
+		return speech_language;
+	}
+	public void setSpeech_language(String speech_language) {
+		this.speech_language = speech_language;
+	}
 	public int getId() {
 		return id;
 	}

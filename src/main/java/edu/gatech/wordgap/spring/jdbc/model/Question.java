@@ -6,7 +6,14 @@ public class Question {
 	private String content_area;
 	private String vocab;
 	private int id;
-	
+	private String question_es;
+
+	public String getQuestion_es() {
+		return question_es;
+	}
+	public void setQuestion_es(String question_es) {
+		this.question_es = question_es;
+	}
 	public int getId() {
 		return id;
 	}

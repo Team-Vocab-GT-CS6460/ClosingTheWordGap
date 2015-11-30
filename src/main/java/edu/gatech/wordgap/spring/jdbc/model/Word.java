@@ -5,7 +5,14 @@ public class Word {
 	private String part_speech;
 	private String definition;
 	private String content_area;
+	private String word_es;
 	
+	public String getWord_es() {
+		return word_es;
+	}
+	public void setWord_es(String word_es) {
+		this.word_es = word_es;
+	}
 	public String getWord() {
 		return word;
 	}
