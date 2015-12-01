@@ -29,7 +29,9 @@
 				var data = null;
 				var correct_answers = 0;
 				var wrong_answers = 0;
-				
+				var current_question = -1;
+				var sid = '${kid.id}';
+
 				$(".fill_in_the_blank_btn").click(function() {
 					correct_answers = 0;
 				 	wrong_answers = 0;
@@ -37,7 +39,7 @@
 
 				    $.ajax({
 				    	type: "GET",
-				        url: "get/quiz?sid=1&" + Math.floor((Math.random() * 1000) + 1),
+				        url: "get/quiz?sid=" + sid + "&" + Math.floor((Math.random() * 1000) + 1),
 					    dataType: "json",
 					    cache: false
 				    }).then(function(json_data) {
@@ -63,26 +65,26 @@
 				       $('button').removeClass("ui-btn-active");
 
 				       $('#fill_in_the_blank_question').empty().append(data[current_question].question);
-				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?sid=1&text=' + data[current_question].ttsString);
+				       $("#fill_in_the_blank_question_audio").attr("src",'get/tts/?sid=' + sid + '&text=' + data[current_question].ttsString);
 
 				       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
 				       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ')');
-				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[0].word);
+				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[0].word);
 					   $("#fill_in_the_blank_answer1_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
 				       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ')');
-				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[1].word);
+				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[1].word);
 				   	   $("#fill_in_the_blank_answer2_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
 				       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ')');
-				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[2].word);
+				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[2].word);
 				       $("#fill_in_the_blank_answer3_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
 				       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ')');
-				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?sid=1&text=' + data[current_question].answers[3].word);
+				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[3].word);
 				       $("#fill_in_the_blank_answer4_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
@@ -92,6 +94,18 @@
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
+
+						    $.ajax({
+						    	type: "GET",
+						        url: "put/score?sid=" + sid  + "&qid=" + data[current_question].qid  + "&word=" + data[current_question].answers[0].word  + "&correct=false",
+							    dataType: "json",
+							    cache: false
+						    }).then(function(json_data) {
+						    	data = json_data;
+						    	current_question = -1;
+						    	$('.next_question').trigger('click');
+						    });	
+
 						}));
 
 				       $('#fill_in_the_blank_answer2').off('click').on('click',(function() {
@@ -101,6 +115,18 @@
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
+
+						    $.ajax({
+						    	type: "GET",
+						        url: "put/score?sid=" + sid  + "&qid=" + data[current_question].qid  + "&word=" + data[current_question].answers[1].word  + "&correct=false",
+							    dataType: "json",
+							    cache: false
+						    }).then(function(json_data) {
+						    	data = json_data;
+						    	current_question = -1;
+						    	$('.next_question').trigger('click');
+						    });	
+
 						}));
 
 				       $('#fill_in_the_blank_answer3').off('click').on('click',(function() {
@@ -110,6 +136,18 @@
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
+
+						    $.ajax({
+						    	type: "GET",
+						        url: "put/score?sid=" + sid  + "&qid=" + data[current_question].qid  + "&word=" + data[current_question].answers[2].word  + "&correct=false",
+							    dataType: "json",
+							    cache: false
+						    }).then(function(json_data) {
+						    	data = json_data;
+						    	current_question = -1;
+						    	$('.next_question').trigger('click');
+						    });	
+
 						}));
 
 				       $('#fill_in_the_blank_answer4').off('click').on('click',(function() {
@@ -119,6 +157,18 @@
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							wrong_answers = wrong_answers + 1;
+
+						    $.ajax({
+						    	type: "GET",
+						        url: "put/score?sid=" + sid  + "&qid=" + data[current_question].qid  + "&word=" + data[current_question].answers[3].word  + "&correct=false",
+							    dataType: "json",
+							    cache: false
+						    }).then(function(json_data) {
+						    	data = json_data;
+						    	current_question = -1;
+						    	$('.next_question').trigger('click');
+						    });	
+
 						}));
 
 
@@ -128,6 +178,18 @@
 							$(".next_question").show();
 							$.fn.disableAnswers();
 							correct_answers = correct_answers + 1;
+
+						    $.ajax({
+						    	type: "GET",
+						        url: "put/score?sid=" + sid  + "&qid=" + data[current_question].qid  + "&word=" + data[current_question].answers[data[current_question].correctAnswer-1].word  + "&correct=true",
+							    dataType: "json",
+							    cache: false
+						    }).then(function(json_data) {
+						    	data = json_data;
+						    	current_question = -1;
+						    	$('.next_question').trigger('click');
+						    });	
+
 						}));
 
 					   $(".next_question").hide();
@@ -145,6 +207,8 @@
 				    $('#fill_in_the_blank_answer3').off('click');
 				    $('#fill_in_the_blank_answer4').off('click');
 				};
+
+				$('.fill_in_the_blank_btn').trigger('click');
 			});
 		</script>
 	</head> 
