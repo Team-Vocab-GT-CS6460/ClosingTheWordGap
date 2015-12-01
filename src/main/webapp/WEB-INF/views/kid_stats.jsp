@@ -32,7 +32,7 @@
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
-				<a data-role="button" onclick="goToStats()">Done</a>
+				<a data-role="button" onclick="goToStats()">Back to Stats</a>
 			</div>
 		</div>
 

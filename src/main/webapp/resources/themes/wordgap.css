@@ -89,6 +89,10 @@ input#name {
     margin-right: 10px;
     display: table;
 }
+.stats h1 {
+	font-size: 40px;
+	margin: 0;
+}
 .title {
     margin-top: 15px;
 	margin-bottom: 5px;
