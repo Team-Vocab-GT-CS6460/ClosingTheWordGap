@@ -55,7 +55,7 @@ public class VocabQuizController {
 	}
 	*/
 	@RequestMapping(value = "/put/score", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
-	public void recordQuisResponse(@RequestParam("word") String word, @RequestParam("sid") int sid,
+	public void recordQuizResponse(@RequestParam("word") String word, @RequestParam("sid") int sid,
 			@RequestParam("qid") int qid, @RequestParam("correct") boolean correct){
 		quizDAO.recordResponse(sid, qid, word, correct);
 	}
@@ -65,7 +65,7 @@ public class VocabQuizController {
 	}
 	
 	@RequestMapping(value = "/get/tts", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
-	public HttpEntity<byte[]> getVoiceResponse(@RequestParam("text") String text, HttpServletResponse response)
+	public HttpEntity<byte[]> getVoiceResponse(@RequestParam("text") String text, @RequestParam("sid") int sid, HttpServletResponse response)
 	{
         //response.getOutputStream().write(audio);
         HttpHeaders header = new HttpHeaders();
