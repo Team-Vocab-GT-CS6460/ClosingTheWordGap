@@ -34,7 +34,7 @@ public class VocabQuizDAOImpl implements VocabQuizDAO {
 	
 	public void recordResponse(int sid, int qid, String word, boolean correct)
 	{
-		String sql = "insert into wordgap.scores (student_id, question_id, word, correct, date) values (?,?,?,?, current_date)";
+		String sql = "insert into wordgap.scores (student_id, question_id, word, correct, test_date) values (?,?,?,?, current_date)";
 		Object[] args = new Object[] {sid, qid, word, correct};
 		jdbcTemplate.update(sql, args);
 	}
