@@ -130,10 +130,13 @@ public class HomeController {
 		Kid kidObj = profilesDAO.getKid(id);
 		logger.info(kidObj.getName());
 		model.addAttribute("kid", kidObj);
-		model.addAttribute("bestCategory", "Synonyms");
-		model.addAttribute("bestCategoryEfficiency", "85%");
-		model.addAttribute("worstCategory", "Antonyms");
-		model.addAttribute("worstCategoryEfficiency", "52%");
+		return "kid_stats";
+	}
+
+	@RequestMapping(value = "/get/kid_stats", method = RequestMethod.GET)
+	public @ResponseBody List<Stat> getKidStats(Locale locale, Model model, @RequestParam("kid") String kid) {
+		logger.info("getting kid stats");
+		int id = Integer.parseInt(kid);
 		List<Score> scores = quizDAO.getScoresById(id);
 		List<Integer> params = new ArrayList<Integer>();
 		List<Question> questions = new ArrayList<Question>();
@@ -142,13 +145,10 @@ public class HomeController {
 		if(params.size() > 0)
 			questions = quizDAO.getQuestions(params);
 		List<Stat> stats = buildStatistics(scores, questions);
-		model.addAttribute("allStats", stats);
-		return "kid_stats";
+		return stats;
 	}
 
-
-	private List<Stat> buildStatistics(List<Score> scores,
-			List<Question> questions) {
+	private List<Stat> buildStatistics(List<Score> scores, List<Question> questions) {
 		Map<Integer, Question> qMap = new HashMap<Integer, Question>();
 		Map<String, Stat> statMap = new HashMap<String, Stat>();
 		for(Question q : questions)

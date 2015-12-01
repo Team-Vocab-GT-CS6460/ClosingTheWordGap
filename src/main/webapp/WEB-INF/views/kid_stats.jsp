@@ -24,27 +24,8 @@
 				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 			</div><!-- /header -->
 	
-			<div data-role="content" data-theme="<%= theme%>">	
-				<div class="indicators">
-					<a data-role="button" data-theme="<%= theme%>">
-						<h3>${bestCategory}</h3>
-						<h1 style="color: green;">${bestCategoryEfficiency}</h1>
-					</a>
-					<a data-role="button" data-theme="<%= theme%>">
-						<h3>${worstCategory}</h3>
-						<h1 style="color: orange;">${worstCategoryEfficiency}</h1>
-					</a>
-				</div>
-				<div class="indicators">
-					<a data-role="button" data-theme="<%= theme%>">
-						<h3>${bestCategory}</h3>
-						<h1 style="color: green;">${bestCategoryEfficiency}</h1>
-					</a>
-					<a data-role="button" data-theme="<%= theme%>">
-						<h3>${worstCategory}</h3>
-						<h1 style="color: orange;">${worstCategoryEfficiency}</h1>
-					</a>
-				</div>
+			<div data-role="content" data-theme="<%= theme%>">
+				<div id="stats" class="stats"></div>
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
@@ -55,7 +36,30 @@
 		<script type="text/javascript">
 	
 		$(document).ready(function() {
-			var leco = ${allStats};
+			var kid = ${kid.id};
+			$.ajax({
+				url : 'get/kid_stats',
+				data: { kid: kid },
+				success : function(stats) {
+					var html = '';
+					for(var i = 0; i < stats.length; i++) {
+						var stat = stats[i];
+						html += '<a data-role="button" data-theme="d" class="kidButton">';
+						html += '<h3>' + stat.name + '</h3>';
+						var efficiency = 100 * stat.correct / stat.total;
+						if(efficiency > 50) {
+							html += '<h1 style="color: green;">' + efficiency + '%</h1>';
+						} else {
+							html += '<h1 style="color: orange;">' + efficiency + '%</h1>';
+						}
+						html += '<p style="margin:0;">correct: ' + stat.correct + '</p>';
+						html += '<p style="margin:0;">total: ' + stat.total + '</p>';
+						html += '</a>';
+					}
+					$('#stats').html(html);
+				    $("[class='kidButton']").button();
+				}
+			});
 		});
 		function goToStats() {
 			window.location = "stats";

@@ -87,6 +87,7 @@ input#name {
 .stats .ui-btn {
     margin-left: 10px;
     margin-right: 10px;
+    display: table;
 }
 .indicators {
     display: flex;
