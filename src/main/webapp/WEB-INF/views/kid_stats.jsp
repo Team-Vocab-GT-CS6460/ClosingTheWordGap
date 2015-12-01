@@ -51,7 +51,7 @@
 						var stat = stats[i];
 						html = '<a data-role="button" data-theme="d" class="kidButton">';
 						html += '<h3>' + stat.name + '</h3>';
-						var efficiency = Math.round(10000 * stat.correct / stat.total) / 100;
+						var efficiency = Math.round(100 * stat.correct / stat.total);
 						if(efficiency > 50) {
 							html += '<h1 style="color: green;">' + efficiency + '%</h1>';
 						} else {

@@ -124,14 +124,14 @@ public class HomeController {
 	}
 
 	private Map<String, String> getKeyStats(List<Stat> stats) {
-		double best = 0;
-		double worst = 100;
+		int best = 0;
+		int worst = 100;
 		String bestName = "";
 		String worstName = "";
 		for(Stat stat : stats) {
 			int correct = stat.getCorrect();
 			int total = stat.getTotal();
-			double performance = 100.0 * correct / total;
+			int performance = 100 * correct / total;
 			if(performance > best) {
 				best = performance;
 				bestName = stat.getName();
