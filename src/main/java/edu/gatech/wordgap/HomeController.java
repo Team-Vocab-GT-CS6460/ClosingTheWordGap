@@ -107,10 +107,6 @@ public class HomeController {
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
 	public String stats(Locale locale, Model model) {
 		logger.info("Welcome to Stats!");
-		model.addAttribute("bestCategory", "Synonyms");
-		model.addAttribute("bestCategoryEfficiency", "85%");
-		model.addAttribute("worstCategory", "Antonyms");
-		model.addAttribute("worstCategoryEfficiency", "52%");
 		List<Score> scores = quizDAO.getScores();
 		List<Integer> params = new ArrayList<Integer>();
 		List<Question> questions = new ArrayList<Question>();
@@ -119,8 +115,42 @@ public class HomeController {
 		if(params.size() > 0)
 			questions = quizDAO.getQuestions(params);
 		List<Stat> stats = buildStatistics(scores, questions);
-		model.addAttribute("allStats", stats);
+		Map<String, String> keyStats = getKeyStats(stats);
+		model.addAttribute("bestCategory", keyStats.get("bestName"));
+		model.addAttribute("bestCategoryEfficiency", keyStats.get("best"));
+		model.addAttribute("worstCategory", keyStats.get("worstName"));
+		model.addAttribute("worstCategoryEfficiency", keyStats.get("worst"));
 		return "stats";
+	}
+
+	private Map<String, String> getKeyStats(List<Stat> stats) {
+		double best = 0;
+		double worst = 100;
+		String bestName = "";
+		String worstName = "";
+		for(Stat stat : stats) {
+			int correct = stat.getCorrect();
+			int total = stat.getTotal();
+			double performance = 100.0 * correct / total;
+			if(performance > best) {
+				best = performance;
+				bestName = stat.getName();
+			}
+			if(performance < worst) {
+				worst = performance;
+				worstName = stat.getName();
+			}
+		}
+		HashMap<String, String> keyStats = new HashMap<String, String>();
+		if(!bestName.isEmpty()) {
+			keyStats.put("bestName", bestName);
+			keyStats.put("best", best + "%");
+		}
+		if(!worstName.isEmpty()) {
+			keyStats.put("worstName", worstName);
+			keyStats.put("worst", worst + "%");
+		}
+		return keyStats;
 	}
 
 	@RequestMapping(value = "/kid_stats", method = RequestMethod.POST)

@@ -89,6 +89,10 @@ input#name {
     margin-right: 10px;
     display: table;
 }
+.title {
+    margin-top: 15px;
+	margin-bottom: 5px;
+}
 .indicators {
     display: flex;
 }
@@ -99,7 +103,7 @@ input#name {
     width: 200px;
 }
 .indicators h1 {
-	font-size: 75px;
+	font-size: 60px;
 	font-weight: bold;
 	margin: 0;
 }

@@ -25,9 +25,9 @@
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">
-				<h2>Good Performance:</h2>
+				<h2 class="title">Good Performance:</h2>
 				<div id="good" class="stats"></div>
-				<h2>Room for Improvement:</h2>
+				<h2 class="title">Room for Improvement:</h2>
 				<div id="bad" class="stats"></div>
 			</div>
 
