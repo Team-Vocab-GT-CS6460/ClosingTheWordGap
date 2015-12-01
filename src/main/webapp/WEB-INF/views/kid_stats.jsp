@@ -25,7 +25,10 @@
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">
-				<div id="stats" class="stats"></div>
+				<h2>Good Performance:</h2>
+				<div id="good" class="stats"></div>
+				<h2>Room for Improvement:</h2>
+				<div id="bad" class="stats"></div>
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
@@ -41,12 +44,14 @@
 				url : 'get/kid_stats',
 				data: { kid: kid },
 				success : function(stats) {
+					var htmlgood = '';
+					var htmlbad = '';
 					var html = '';
 					for(var i = 0; i < stats.length; i++) {
 						var stat = stats[i];
-						html += '<a data-role="button" data-theme="d" class="kidButton">';
+						html = '<a data-role="button" data-theme="d" class="kidButton">';
 						html += '<h3>' + stat.name + '</h3>';
-						var efficiency = 100 * stat.correct / stat.total;
+						var efficiency = Math.round(10000 * stat.correct / stat.total) / 100;
 						if(efficiency > 50) {
 							html += '<h1 style="color: green;">' + efficiency + '%</h1>';
 						} else {
@@ -55,8 +60,14 @@
 						html += '<p style="margin:0;">correct: ' + stat.correct + '</p>';
 						html += '<p style="margin:0;">total: ' + stat.total + '</p>';
 						html += '</a>';
+						if(efficiency > 50) {
+							htmlgood += html;
+						} else {
+							htmlbad += html;
+						}
 					}
-					$('#stats').html(html);
+					$('#good').html(htmlgood);
+					$('#bad').html(htmlbad);
 				    $("[class='kidButton']").button();
 				}
 			});
