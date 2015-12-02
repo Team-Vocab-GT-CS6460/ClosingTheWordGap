@@ -69,23 +69,23 @@
 
 				       $('#fill_in_the_blank_answer1').empty().append(data[current_question].answers[0].word);
 				       $('#fill_in_the_blank_answer1_img').empty().css('background','url(' + url_prefix + data[current_question].answers[0].imagePath + ') no-repeat center');
-				       $("#fill_in_the_blank_answer1_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[0].word);
-					   $("#fill_in_the_blank_answer1_audio").removeAttr("src");
+				       $("#fill_in_the_blank_answer1_audio").attr("src",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[0].ttsString);
+					   //$("#fill_in_the_blank_answer1_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer2').empty().append(data[current_question].answers[1].word);
 				       $('#fill_in_the_blank_answer2_img').empty().css('background','url(' + url_prefix + data[current_question].answers[1].imagePath + ') no-repeat center');
-				       $("#fill_in_the_blank_answer2_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[1].word);
-				   	   $("#fill_in_the_blank_answer2_audio").removeAttr("src");
+				       $("#fill_in_the_blank_answer2_audio").attr("src",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[1].ttsString);
+				   	   //$("#fill_in_the_blank_answer2_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer3').empty().append(data[current_question].answers[2].word);
 				       $('#fill_in_the_blank_answer3_img').empty().css('background','url(' + url_prefix + data[current_question].answers[2].imagePath + ') no-repeat center');
-				       $("#fill_in_the_blank_answer3_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[2].word);
-				       $("#fill_in_the_blank_answer3_audio").removeAttr("src");
+				       $("#fill_in_the_blank_answer3_audio").attr("src",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[2].ttsString);
+				       //$("#fill_in_the_blank_answer3_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer4').empty().append(data[current_question].answers[3].word);
 				       $('#fill_in_the_blank_answer4_img').empty().css('background','url(' + url_prefix + data[current_question].answers[3].imagePath + ') no-repeat center');
-				       $("#fill_in_the_blank_answer4_audio").attr("src-temp",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[3].word);
-				       $("#fill_in_the_blank_answer4_audio").removeAttr("src");
+				       $("#fill_in_the_blank_answer4_audio").attr("src",'get/tts/?sid=' + sid + '&text=' + data[current_question].answers[3].ttsString);
+				       //$("#fill_in_the_blank_answer4_audio").removeAttr("src");
 
 				       $('#fill_in_the_blank_answer1').off('click').on('click',(function() {
 				       		$('#fill_in_the_blank_answer1').addClass("ui-btn-active");
