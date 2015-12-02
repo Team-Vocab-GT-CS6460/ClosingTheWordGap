@@ -1,8 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" language="java" session="false" %>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>CWG Quiz</title>
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
