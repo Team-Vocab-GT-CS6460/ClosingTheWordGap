@@ -68,6 +68,18 @@ public class VocabQuizController {
 	public HttpEntity<byte[]> getVoiceResponse(@RequestParam("text") String text, @RequestParam("sid") int sid, HttpServletResponse response)
 	{
         //response.getOutputStream().write(audio);
+		Kid kid = profilesDAO.getKid(sid);
+		String lang = kid.getSpeech_language();
+		String xarg = "";
+		if(lang != null && lang.equalsIgnoreCase("spanish"))
+		{
+			lang = "es-us";
+			xarg = "voice=rosa";
+		}
+			
+		else
+			lang = "en-us";			
+		
         HttpHeaders header = new HttpHeaders();
         header.setContentType(new MediaType("audio", "vnd.wav"));
         
@@ -83,15 +95,15 @@ public class VocabQuizController {
 
             // Enter the value from the 'App Key' field obtained at developer.att.com 
             // in your app account.
-            final String clientId = "comi8ciao1ufrdnflppyi48tpvmatodp";
+            final String clientId = "2cnvefbgnb77vpfj6dgrltneskaublsm";
 
             // Enter the value from the 'App Secret' field obtained at developer.att.com 
             // in your app account.
-            final String clientSecret = "ekowie0gvkiiwqwfnxedjmu9wsryztcx";
+            final String clientSecret = "fvdh7u136mdo29c0prrg76022sk7niwz";
 
             // Create a service to request an OAuth token.
             OAuthService osrvc = new OAuthService(fqdn, clientId, clientSecret);
-
+                        
             // Get the OAuth access token using the API scope set to TTS for 
             // the Text To Speech method of the Speech API.
             OAuthToken token = osrvc.getToken("TTS");
@@ -100,7 +112,8 @@ public class VocabQuizController {
             TtsService ttsService = new TtsService(fqdn, token);
 
             // Send the request to obtain the audio.
-            audio = ttsService.sendRequest("text/plain", text, "");
+            audio = ttsService.sendRequest("text/plain", text, xarg, lang);
+            
 
             // Print the following message. The call has succeeded, otherwise 
             // an exception would be thrown.
