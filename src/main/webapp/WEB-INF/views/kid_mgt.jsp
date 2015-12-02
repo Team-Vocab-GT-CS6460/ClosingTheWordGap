@@ -21,7 +21,7 @@
 
 		<div data-role="page" data-theme="<%= theme%>">
 			<div data-role="header" data-theme="<%= theme%>">${kid.name} Settings
-				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goHome()">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">
@@ -121,6 +121,9 @@
 					window.location = "management";
 				}
 			});
+		}
+		function goHome() {
+			window.location="profile";
 		};
 
 		</script>

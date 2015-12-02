@@ -216,8 +216,8 @@
 	<div data-role="page" id="fill_in_the_blank" data-theme="<%= theme%>">
 
 		<div data-role="header" data-theme="<%= theme%>">
-			Fill in the blank!
-			<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+			Fill in the blank
+			<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goToProfile()">
 		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">

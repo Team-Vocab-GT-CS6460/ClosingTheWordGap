@@ -21,7 +21,7 @@
 
 		<div data-role="page" data-theme="<%= theme%>">
 			<div data-role="header" data-theme="<%= theme%>">Manage Profiles
-				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goToProfiles()">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
@@ -58,7 +58,6 @@
 			});
 		});
 		function goToProfiles() {
-			//TODO update last activity
 			window.location="profile";
 		}
 

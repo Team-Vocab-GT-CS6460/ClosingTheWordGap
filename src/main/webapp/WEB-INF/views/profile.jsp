@@ -21,7 +21,7 @@
 
 		<div data-role="page" data-theme="<%= theme%>">
 			<div data-role="header" data-theme="<%= theme%>">Profiles
-				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goHome()">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
@@ -30,7 +30,7 @@
 			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()" style="margin: 0;">
 				    <div data-role="collapsible">
 
-						<h4>Add a new kid</h4>
+						<h4>Add New Kid</h4>
 
 						Name:
 						<form:input type="text" path="name" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" />
@@ -45,7 +45,7 @@
 					</div>
 			    </form:form><!-- Add Kid -->
 
-				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align: left;"> View Stats </a>
+				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align: left;"> Statistics </a>
 
 				<a data-role="button" onclick="goToManagement()" data-icon="gear" style="text-align: left;"> Manage Profiles </a>
 
@@ -119,6 +119,9 @@
 		}
 		function goToManagement() {
 			window.location = "management";
+		}
+		function goHome() {
+			window.location="profile";
 		}
 
 		</script>

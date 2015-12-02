@@ -20,8 +20,8 @@
 	<body oncontextmenu="return false;">
 
 		<div data-role="page" data-theme="<%= theme%>">
-			<div data-role="header" data-theme="<%= theme%>">Overall Stats
-				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+			<div data-role="header" data-theme="<%= theme%>">Statistics
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goToProfile()">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">	
@@ -73,7 +73,6 @@
 			});
 		});
 		function goToProfile() {
-			//update last activity
 			window.location="profile";
 		}
 

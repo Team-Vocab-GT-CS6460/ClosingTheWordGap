@@ -21,14 +21,19 @@
 
 		<div data-role="page" data-theme="<%= theme%>">
 			<div data-role="header" data-theme="<%= theme%>">${kid.name} Stats
-				<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
+				<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goHome()">
 			</div><!-- /header -->
 	
 			<div data-role="content" data-theme="<%= theme%>">
-				<h2 class="title">Good Performance:</h2>
-				<div id="good" class="stats"></div>
-				<h2 class="title">Room for Improvement:</h2>
-				<div id="bad" class="stats"></div>
+				<div id="good_stats">
+					<h2 class="title">Good Performance:</h2>
+					<div id="good" class="stats"></div>
+				</div>
+				<div id="bad_stats">
+					<h2 class="title">Room for Improvement:</h2>
+					<div id="bad" class="stats"></div>
+				</div>
+				<h1 id="not_found" style="visibility:hidden">No Activity Found</h1>
 			</div>
 
 			<div data-role="footer" data-theme="<%= theme%>">
@@ -66,15 +71,36 @@
 							htmlbad += html;
 						}
 					}
-					$('#good').html(htmlgood);
-					$('#bad').html(htmlbad);
-				    $("[class='kidButton']").button();
+					if(htmlgood || htmlbad) {
+						if(htmlgood) {
+							$('#good').html(htmlgood);
+						} else {
+							$('#good_stats').css("visibility", "hidden");
+							$('#good_stats').css("height", "0");
+						}
+						if(htmlbad) {
+							$('#bad').html(htmlbad);
+						} else {
+							$('#bad_stats').css("visibility", "hidden");
+							$('#bad_stats').css("height", "0");
+						}
+					    $("[class='kidButton']").button();
+					} else {
+						$('#good_stats').css("visibility", "hidden");
+						$('#good_stats').css("height", "0");
+						$('#bad_stats').css("visibility", "hidden");
+						$('#bad_stats').css("height", "0");
+						$('#not_found').css("visibility", "visible");
+					}
 				}
 			});
 		});
 		function goToStats() {
 			window.location = "stats";
 		}
+		function goHome() {
+			window.location="profile";
+		};
 
 		</script>
 
