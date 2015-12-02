@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="latin1">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>CWG Quiz</title>
 		<link rel="stylesheet" href="resources/themes/closing-the-word-gap.min.css" />
