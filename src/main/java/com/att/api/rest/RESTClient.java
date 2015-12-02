@@ -591,7 +591,7 @@ public class RESTClient {
             HttpPost httpPost = new HttpPost(url);
             addInternalHeaders(httpPost);
             if (body != null && !body.equals("")) {
-                httpPost.setEntity(new StringEntity(body));
+                httpPost.setEntity(new StringEntity(body, "utf8"));
             }
 
             response = httpClient.execute(httpPost);

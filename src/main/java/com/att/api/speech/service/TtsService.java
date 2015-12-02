@@ -69,14 +69,15 @@ public class TtsService extends APIService {
      * @throws RESTException request error
      * @see SpeechResponse
      */
-    public byte[] sendRequest(String contentType, String speechText, String xArg)
+    public byte[] sendRequest(String contentType, String speechText, String xArg, String lang)
             throws RESTException  {
 
         final String endpoint = getFQDN() + "/speech/v3/textToSpeech";
         RESTClient restClient = new RESTClient(endpoint)
             .addAuthorizationHeader(getToken())
             .addHeader("Content-Type", contentType)
-            .addHeader("Accept", "audio/x-wav");                         
+            .addHeader("Accept", "audio/x-wav")
+            .addHeader("Content-Language", lang);                         
 
         if (xArg != null && !xArg.equals("")) {
             restClient.addHeader("X-Arg", xArg);
