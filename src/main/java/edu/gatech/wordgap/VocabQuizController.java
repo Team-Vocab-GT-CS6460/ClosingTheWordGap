@@ -237,7 +237,10 @@ public class VocabQuizController {
 			answer.setTtsString(word.getWord_es());
 		else
 			answer.setTtsString(word.getWord());
-		answer.setDefinition(word.getDefinition());
+		if(print_lang != null && print_lang.equalsIgnoreCase("spanish"))
+			answer.setDefinition(word.getDefinition_es());
+		else 
+			answer.setDefinition(word.getDefinition());
 		answer.setImagePath("/images/" + word.getWord() + ".png");
 		answer.setAudioPath("");
 		return answer;

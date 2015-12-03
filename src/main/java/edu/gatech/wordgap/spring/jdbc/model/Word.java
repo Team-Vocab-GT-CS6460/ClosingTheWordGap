@@ -6,7 +6,14 @@ public class Word {
 	private String definition;
 	private String content_area;
 	private String word_es;
+	private String definition_es;
 	
+	public String getDefinition_es() {
+		return definition_es;
+	}
+	public void setDefinition_es(String definition_es) {
+		this.definition_es = definition_es;
+	}
 	public String getWord_es() {
 		return word_es;
 	}
