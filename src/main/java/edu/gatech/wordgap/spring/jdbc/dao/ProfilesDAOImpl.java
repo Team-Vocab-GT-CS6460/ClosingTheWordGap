@@ -121,6 +121,17 @@ public class ProfilesDAOImpl implements ProfilesDAO {
 				batchArgs.add(args);
 			}
 			jdbcTemplate.batchUpdate(sql, batchArgs);
+			
+			sql = "delete from wordgap.scores where student_id not in (";
+			for(int i=0; i<kidsArray.size(); i++)
+			{
+				Kid kid = kidsArray.get(i);
+				sql += kid.getId();
+				if(i<kidsArray.size() - 1)
+					sql += ",";
+			}
+			sql += ")";
+			jdbcTemplate.execute(sql);
 			return true;
 		}
 		catch (Exception ex){
