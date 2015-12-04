@@ -287,7 +287,7 @@
 		<div data-role="content" data-theme="<%= theme%>">
 			<table style="font-size:60px; margin: 0 auto;">
 				<tr>
-					<th>${print_lang == 'spanish' ? 'Correcto' : 'Correct'}<&nbsp;</th>
+					<th>${print_lang == 'spanish' ? 'Correcto' : 'Correct'}&nbsp;</th>
 					<td><span id="fill_in_the_blank_complete_correct"></span></td>
 				</tr>
 				<tr>
