@@ -27,7 +27,7 @@
 			<div data-role="content" data-theme="<%= theme%>">	
 				<div id="profiles" class="profiles"></div>
 
-			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()" style="margin: 0;">
+			    <form:form action="profile" commandName="newKid" method="post" onsubmit="window.location.reload()" style="margin:0;">
 				    <div data-role="collapsible">
 
 						<h4>Add New Kid</h4>
@@ -45,9 +45,9 @@
 					</div>
 			    </form:form><!-- Add Kid -->
 
-				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align: left;"> Statistics </a>
+				<a data-role="button" onclick="goToStats()" data-icon="grid" style="text-align:left;"> Statistics </a>
 
-				<a data-role="button" onclick="goToManagement()" data-icon="gear" style="text-align: left;"> Manage Profiles </a>
+				<a data-role="button" onclick="goToManagement()" data-icon="gear" style="text-align:left;"> Manage Profiles </a>
 
 			</div><!-- /content -->
 
@@ -56,9 +56,9 @@
 
 		<div data-role="popup" id="deletePopup" data-theme="<%= theme%>">
 			<div data-role="header" data-theme="<%= theme%>" class="ui-corner-top ui-header ui-bar-d">
-				<h1 class="ui-title">Delete Profile?</h1>
+				<h1 class="ui-title">Delete Profile</h1>
 			</div>
-			<div class="ui-corner-bottom ui-content">
+			<div class="ui-corner-bottom ui-content" style="text-align:center;">
 				<h3>Are you sure you want to delete this profile?</h3>
 				<a data-role="button" onclick="closePopup()" data-theme="<%= theme%>" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all">Cancel</a>
 				<a data-role="button" onclick="tapholdHandler()" data-theme="<%= theme%>" class="ui-link ui-btn ui-btn-inline ui-shadow ui-corner-all">Delete</a>
