@@ -216,7 +216,7 @@
 	<div data-role="page" id="fill_in_the_blank" data-theme="<%= theme%>">
 
 		<div data-role="header" data-theme="<%= theme%>">
-			Fill in the blank
+			${print_lang == 'spanish' ? 'Contesta la pregunta!' : 'Answer the question!'}
 			<img src="resources/themes/images/cwg_logo_name.png" class="favicon" onclick="goToProfile()">
 		</div><!-- /header -->
 
@@ -271,33 +271,33 @@
 				<h1 id="wrong_answer_definition" style="font-size: 20px; white-space: nowrap;"></h1>
 			</div>
 			<fieldset class="ui-grid">
-				<button class="next_question" style="font-size:20px;">Next Question!</button>
+				<button class="next_question" style="font-size:20px;">${print_lang == 'spanish' ? 'Siguiente Pregunta!' : 'Next Question!'}</button>
 			</fieldset>
 		</div><!-- /content -->
 		<div data-role="footer" data-theme="<%= theme%>">
-			<a data-role="button" onclick="goToProfile()">Back to Profiles</a>
+			<a data-role="button" onclick="goToProfile()">${print_lang == 'spanish' ? 'Regresar a Perfiles' : 'Back to Profiles'}</a>
 		</div><!-- /footer -->
 	</div><!-- /page fill_in_the_blank -->
 
 	<div data-role="page" id="fill_in_the_blank_complete" data-theme="<%= theme%>">
-		<div data-role="header" data-theme="<%= theme%>">Congratulations ${kid.name}!
+		<div data-role="header" data-theme="<%= theme%>">${print_lang == 'spanish' ? 'Felicidades' : 'Congratulations'} ${kid.name}!
 			<img src="resources/themes/images/cwg_logo_name.png" class="favicon">
 		</div><!-- /header -->
 
 		<div data-role="content" data-theme="<%= theme%>">
 			<table style="font-size:60px; margin: 0 auto;">
 				<tr>
-					<th>Correct&nbsp;</th>
+					<th>${print_lang == 'spanish' ? 'Correcto' : 'Correct'}<&nbsp;</th>
 					<td><span id="fill_in_the_blank_complete_correct"></span></td>
 				</tr>
 				<tr>
-					<th>Wrong&nbsp;</th>
+					<th>${print_lang == 'spanish' ? 'Incorrecto' : 'Wrong'}&nbsp;</th>
 					<td><span id="fill_in_the_blank_complete_wrong"></span></td>
 				</tr>
 			</table>
 			<br />
-			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">Start Again</a></p>
-			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">Finish</a>
+			<p><a href="#fill_in_the_blank" data-role="button" class="fill_in_the_blank_btn" style="font-size:25px;">${print_lang == 'spanish' ? 'Volver a Empezar' : 'Start Again'}</a></p>
+			<a href="#" onclick="goToProfile()" data-role="button" style="font-size:25px;">${print_lang == 'spanish' ? 'Terminar' : 'Finish'}</a>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="<%= theme%>">

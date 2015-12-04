@@ -99,8 +99,10 @@ public class HomeController {
 		}
 		int id = Integer.parseInt(kid);
 		Kid kidObj = profilesDAO.getKid(id);
+		String print_lang = kidObj.getPrint_language();
 		logger.info(kidObj.getName());
 		model.addAttribute("kid", kidObj);
+		model.addAttribute("print_lang", print_lang);
 		return "home";
 	}
 
