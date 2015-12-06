@@ -27,6 +27,7 @@ import edu.gatech.wordgap.spring.jdbc.model.Kid;
 import edu.gatech.wordgap.spring.jdbc.model.Question;
 import edu.gatech.wordgap.spring.jdbc.model.Score;
 import edu.gatech.wordgap.spring.jdbc.model.Stat;
+import edu.gatech.wordgap.util.StatHelper;
 
 /**
  * Handles requests for the application home page.
@@ -116,7 +117,7 @@ public class HomeController {
 			params.add(score.getQuestion_id());
 		if(params.size() > 0)
 			questions = quizDAO.getQuestions(params);
-		List<Stat> stats = buildStatistics(scores, questions);
+		List<Stat> stats = StatHelper.buildStatistics(scores, questions);
 		Map<String, String> keyStats = getKeyStats(stats);
 		model.addAttribute("bestCategory", keyStats.get("bestName"));
 		model.addAttribute("bestCategoryEfficiency", keyStats.get("best"));
@@ -176,41 +177,9 @@ public class HomeController {
 			params.add(score.getQuestion_id());
 		if(params.size() > 0)
 			questions = quizDAO.getQuestions(params);
-		List<Stat> stats = buildStatistics(scores, questions);
+		List<Stat> stats = StatHelper.buildStatistics(scores, questions);
 		return stats;
-	}
-
-	private List<Stat> buildStatistics(List<Score> scores, List<Question> questions) {
-		Map<Integer, Question> qMap = new HashMap<Integer, Question>();
-		Map<String, Stat> statMap = new HashMap<String, Stat>();
-		for(Question q : questions)
-			qMap.put(q.getId(), q);
-		for(Score s: scores)
-		{
-			int qid = s.getQuestion_id();
-			Question q = qMap.get(qid);
-			for(String k : q.getKeywordsSplit()){
-				Stat stat = statMap.get(k.trim());
-				if(stat == null)
-				{
-					stat = new Stat();
-					stat.setName(k.trim());
-					stat.setCorrect(0);
-					stat.setTotal(0);
-				}
-				int correct = stat.getCorrect();
-				int total = stat.getTotal();
-				
-				stat.setTotal(total + 1);
-				if(s.getCorrect())
-				{
-					stat.setCorrect(correct + 1);
-				}
-				statMap.put(k.trim(), stat);
-			}
-		}
-		return new ArrayList<Stat> (statMap.values());
-	}
+	}	
 
 	@RequestMapping(value = "/save/settings", method = RequestMethod.GET)
 	public String saveSettings(Locale locale, Model model, 

@@ -1,6 +1,7 @@
 package edu.gatech.wordgap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +28,13 @@ import edu.gatech.wordgap.spring.jdbc.dao.ProfilesDAO;
 import edu.gatech.wordgap.spring.jdbc.dao.VocabQuizDAO;
 import edu.gatech.wordgap.spring.jdbc.model.Kid;
 import edu.gatech.wordgap.spring.jdbc.model.Question;
+import edu.gatech.wordgap.spring.jdbc.model.Score;
+import edu.gatech.wordgap.spring.jdbc.model.Stat;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizAnswer;
 import edu.gatech.wordgap.spring.jdbc.model.VocabQuizQuestion;
 import edu.gatech.wordgap.spring.jdbc.model.Word;
 import edu.gatech.wordgap.util.MultiKeyMap;
+import edu.gatech.wordgap.util.StatHelper;
 
 @Controller
 public class VocabQuizController {
@@ -141,10 +145,47 @@ public class VocabQuizController {
 		List<VocabQuizQuestion> questionList = new ArrayList<VocabQuizQuestion>();
 		Map<String,Boolean> questionMap = new HashMap<String,Boolean>();
 		Random randomGenerator = new Random();
+
+		String activity = kid.getActivity();
+		String sentenceType = kid.getSentence_types();
+		String relationship = kid.getWord_relationship();
+		String wordType = kid.getWord_types();
+		
+		List<Score> scores = quizDAO.getScoresById(kid.getId());
+		List<Integer> params = new ArrayList<Integer>();
+		List<Question> questions = new ArrayList<Question>();
+		for(Score score : scores)
+			params.add(score.getQuestion_id());
+		if(params.size() > 0)
+			questions = quizDAO.getQuestions(params);
+		List<Stat> stats = StatHelper.buildStatistics(scores, questions);
+		
+		Map<String, Double> statMap = new HashMap<String, Double>();
+		for(Stat stat : stats)
+		{
+			Double grade = (double) stat.getCorrect()/ (double) stat.getTotal();
+			statMap.put(stat.getName(), grade);
+		}
+		
+		if(activity == null || activity.equalsIgnoreCase("smart"))
+			activity = getActivity(statMap);
+		if(sentenceType == null || sentenceType.equalsIgnoreCase("smart"))
+			sentenceType = getSentenceType(statMap);
+		if(relationship == null || relationship.equalsIgnoreCase("smart"))
+			relationship = getRelationship(statMap);
+		if(wordType == null || wordType.equalsIgnoreCase("smart"))
+			wordType = getWordType(statMap);
+		
+		Map<String, Stat> wordStats = StatHelper.getWordStats(scores);
+		
+		
+		System.out.println("wordtype: " + wordType + "activity: " + activity + "relationship: " + relationship + "sentenceType: " + sentenceType);
 		
 		for(int i=0;i<10;i++)
-		{
+		{			
+						
 			boolean repick = true;
+			int pick_attempt = 0;
 			int wi = -1;
 		
 			while(repick)
@@ -153,8 +194,16 @@ public class VocabQuizController {
 				Boolean found = questionMap.get(words.get(wi).getWord());
 				if(found == null)
 				{
-					repick=false;
-					questionMap.put(words.get(wi).getWord(), new Boolean(true));
+					Stat stat = wordStats.get(words.get(wi));
+					double score = (double) stat.getCorrect() / (double) stat.getTotal();
+					if(stat == null || stat.getTotal() < 4 || score < 0.75 || pick_attempt >= 5)
+					{
+						repick=false;
+						pick_attempt=0;
+						questionMap.put(words.get(wi).getWord(), new Boolean(true));
+					}
+					else
+						pick_attempt++;
 				}
 			}
 			
@@ -227,6 +276,79 @@ public class VocabQuizController {
 		
 	}
 	
+	private String getWordType(Map<String, Double> statMap) {
+		String[] types = {"actions", "adjectives", "directional", "positional"};
+		List<Double> values = new ArrayList<Double>();
+		for(String type : types)
+		{
+			if(statMap.get(type) == null)
+				values.add(0.0);
+			else
+				values.add(statMap.get(type));
+		}
+		for(int i=0; i<values.size(); i++)
+		{
+			if(values.get(i) == Collections.min(values))
+				return types[i];
+		}
+		return types[0];
+	}
+
+	private String getRelationship(Map<String, Double> statMap) {
+		String[] types = {"synonyms", "antonyms"};
+		List<Double> values = new ArrayList<Double>();
+		for(String type : types)
+		{
+			if(statMap.get(type) == null)
+				values.add(0.0);
+			else
+				values.add(statMap.get(type));
+		}
+		for(int i=0; i<values.size(); i++)
+		{
+			if(values.get(i) == Collections.min(values))
+				return types[i];
+		}
+		return types[0];
+	}
+
+	private String getSentenceType(Map<String, Double> statMap) {
+		String[] types = {"definitions", "comparisons", "causes", "sequencing"};
+		List<Double> values = new ArrayList<Double>();
+		for(String type : types)
+		{
+			if(statMap.get(type) == null)
+				values.add(0.0);
+			else
+				values.add(statMap.get(type));
+		}
+		for(int i=0; i<values.size(); i++)
+		{
+			if(values.get(i) == Collections.min(values))
+				return types[i];
+		}
+		return types[0];
+	}
+
+	private String getActivity(Map<String, Double> statMap) {
+		//sentences, analogies, definitions
+		String[] types = {"sentences", "analogies", "definitions"};
+		List<Double> values = new ArrayList<Double>();
+		for(String type : types)
+		{
+			if(statMap.get(type) == null)
+				values.add(0.0);
+			else
+				values.add(statMap.get(type));
+		}
+		for(int i=0; i<values.size(); i++)
+		{
+			if(values.get(i) == Collections.min(values))
+				return types[i];
+		}
+		return types[0];
+	}
+
 	private VocabQuizAnswer buildAnswerOption(Word word, String print_lang, String speech_lang) {
 		VocabQuizAnswer answer = new VocabQuizAnswer();
 		if(print_lang != null && print_lang.equalsIgnoreCase("spanish"))
