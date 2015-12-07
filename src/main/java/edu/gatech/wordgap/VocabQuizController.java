@@ -50,14 +50,6 @@ public class VocabQuizController {
 	
 	private static MultiKeyMap map;
 	
-	//use for local testing without database
-	/*
-	@RequestMapping(value = "/get/quiz", method = RequestMethod.GET)
-	public @ResponseBody String getVocabQuiz()
-	{
-		return "[{\"question\":\"When something is ________, it is not warm or cold.\",\"correctAnswer\":2,\"answers\":[{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"},{\"word\":\"cool\",\"definition\":\"having a temperature that is between warm and cold\",\"imagePath\":\"/images/cool.png\",\"audioPath\":\"\"},{\"word\":\"fog\",\"definition\":\"a cloud floating near to the ground\",\"imagePath\":\"/images/fog.png\",\"audioPath\":\"\"},{\"word\":\"cloudy\",\"definition\":\"covered with or full of clouds\",\"imagePath\":\"/images/cloudy.png\",\"audioPath\":\"\"}]},{\"question\":\"We can swim in the lake when the water is ________.\",\"correctAnswer\":4,\"answers\":[{\"word\":\"flake\",\"definition\":\"a small, thin piece of something\",\"imagePath\":\"/images/flake.png\",\"audioPath\":\"\"},{\"word\":\"fog\",\"definition\":\"a cloud floating near to the ground\",\"imagePath\":\"/images/fog.png\",\"audioPath\":\"\"},{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"},{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"}]},{\"question\":\"We can swim in the lake when the water is ________.\",\"correctAnswer\":1,\"answers\":[{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"},{\"word\":\"cloud\",\"definition\":\"a group of water drops or pieces of ice in the air from which rain, hail, or snow may fall\",\"imagePath\":\"/images/cloud.png\",\"audioPath\":\"\"},{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"},{\"word\":\"cloud\",\"definition\":\"a group of water drops or pieces of ice in the air from which rain, hail, or snow may fall\",\"imagePath\":\"/images/cloud.png\",\"audioPath\":\"\"}]},{\"question\":\"We couldn't see the Sun because the sky was ________.\",\"correctAnswer\":4,\"answers\":[{\"word\":\"cloud\",\"definition\":\"a group of water drops or pieces of ice in the air from which rain, hail, or snow may fall\",\"imagePath\":\"/images/cloud.png\",\"audioPath\":\"\"},{\"word\":\"fall\",\"definition\":\"the season between summer and winter when temperatures get cooler and days get shorter\",\"imagePath\":\"/images/fall.png\",\"audioPath\":\"\"},{\"word\":\"flake\",\"definition\":\"a small, thin piece of something\",\"imagePath\":\"/images/flake.png\",\"audioPath\":\"\"},{\"word\":\"cloudy\",\"definition\":\"covered with or full of clouds\",\"imagePath\":\"/images/cloudy.png\",\"audioPath\":\"\"}]},{\"question\":\"Please ________ out the candle.\",\"correctAnswer\":3,\"answers\":[{\"word\":\"fog\",\"definition\":\"a cloud floating near to the ground\",\"imagePath\":\"/images/fog.png\",\"audioPath\":\"\"},{\"word\":\"cloud\",\"definition\":\"a group of water drops or pieces of ice in the air from which rain, hail, or snow may fall\",\"imagePath\":\"/images/cloud.png\",\"audioPath\":\"\"},{\"word\":\"blow\",\"definition\":\"to create moving air\",\"imagePath\":\"/images/blow.png\",\"audioPath\":\"\"},{\"word\":\"flake\",\"definition\":\"a small, thin piece of something\",\"imagePath\":\"/images/flake.png\",\"audioPath\":\"\"}]},{\"question\":\"Autumn is the season before winter.\",\"correctAnswer\":1,\"answers\":[{\"word\":\"autumn\",\"definition\":\"the season after summer and before winter\",\"imagePath\":\"/images/autumn.png\",\"audioPath\":\"\"},{\"word\":\"autumn\",\"definition\":\"the season after summer and before winter\",\"imagePath\":\"/images/autumn.png\",\"audioPath\":\"\"},{\"word\":\"autumn\",\"definition\":\"the season after summer and before winter\",\"imagePath\":\"/images/autumn.png\",\"audioPath\":\"\"},{\"word\":\"cool\",\"definition\":\"having a temperature that is between warm and cold\",\"imagePath\":\"/images/cool.png\",\"audioPath\":\"\"}]},{\"question\":\"That ________ in the sky might bring rain.\",\"correctAnswer\":3,\"answers\":[{\"word\":\"blow\",\"definition\":\"to create moving air\",\"imagePath\":\"/images/blow.png\",\"audioPath\":\"\"},{\"word\":\"fall\",\"definition\":\"the season between summer and winter when temperatures get cooler and days get shorter\",\"imagePath\":\"/images/fall.png\",\"audioPath\":\"\"},{\"word\":\"cloud\",\"definition\":\"a group of water drops or pieces of ice in the air from which rain, hail, or snow may fall\",\"imagePath\":\"/images/cloud.png\",\"audioPath\":\"\"},{\"word\":\"cold\",\"definition\":\"having a low temperature\",\"imagePath\":\"/images/cold.png\",\"audioPath\":\"\"}]},{\"question\":\"The Sun rises in the ________ and sets in the west.\",\"correctAnswer\":2,\"answers\":[{\"word\":\"dew\",\"definition\":\"drops of water that form on things at night\",\"imagePath\":\"/images/dew.png\",\"audioPath\":\"\"},{\"word\":\"east\",\"definition\":\"the direction of the sunrise; the opposite of west\",\"imagePath\":\"/images/east.png\",\"audioPath\":\"\"},{\"word\":\"fog\",\"definition\":\"a cloud floating near to the ground\",\"imagePath\":\"/images/fog.png\",\"audioPath\":\"\"},{\"word\":\"calm\",\"definition\":\"not angry or excited; still or unmoving\",\"imagePath\":\"/images/calm.png\",\"audioPath\":\"\"}]},{\"question\":\"A ________ of snow landed on my tongue.\",\"correctAnswer\":3,\"answers\":[{\"word\":\"autumn\",\"definition\":\"the season after summer and before winter\",\"imagePath\":\"/images/autumn.png\",\"audioPath\":\"\"},{\"word\":\"cold\",\"definition\":\"having a low temperature\",\"imagePath\":\"/images/cold.png\",\"audioPath\":\"\"},{\"word\":\"flake\",\"definition\":\"a small, thin piece of something\",\"imagePath\":\"/images/flake.png\",\"audioPath\":\"\"},{\"word\":\"fog\",\"definition\":\"a cloud floating near to the ground\",\"imagePath\":\"/images/fog.png\",\"audioPath\":\"\"}]},{\"question\":\"The Sun rises in the ________ and sets in the west.\",\"correctAnswer\":1,\"answers\":[{\"word\":\"east\",\"definition\":\"the direction of the sunrise; the opposite of west\",\"imagePath\":\"/images/east.png\",\"audioPath\":\"\"},{\"word\":\"cold\",\"definition\":\"having a low temperature\",\"imagePath\":\"/images/cold.png\",\"audioPath\":\"\"},{\"word\":\"cool\",\"definition\":\"having a temperature that is between warm and cold\",\"imagePath\":\"/images/cool.png\",\"audioPath\":\"\"},{\"word\":\"autumn\",\"definition\":\"the season after summer and before winter\",\"imagePath\":\"/images/autumn.png\",\"audioPath\":\"\"}]}]";
-	}
-	*/
 	@RequestMapping(value = "/put/score", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
 	public void recordQuizResponse(@RequestParam("word") String word, @RequestParam("sid") int sid,
 			@RequestParam("qid") int qid, @RequestParam("correct") boolean correct){
@@ -71,7 +63,6 @@ public class VocabQuizController {
 	@RequestMapping(value = "/get/tts", method = RequestMethod.GET, produces = { MediaType.APPLICATION_OCTET_STREAM_VALUE })
 	public HttpEntity<byte[]> getVoiceResponse(@RequestParam("text") String text, @RequestParam("sid") int sid, HttpServletResponse response)
 	{
-        //response.getOutputStream().write(audio);
 		Kid kid = profilesDAO.getKid(sid);
 		String lang = kid.getSpeech_language();
 		String xarg = "";
@@ -195,7 +186,9 @@ public class VocabQuizController {
 				if(found == null)
 				{
 					Stat stat = wordStats.get(words.get(wi));
-					double score = (double) stat.getCorrect() / (double) stat.getTotal();
+					double score = 0.0;
+					if(stat != null)
+						score = (double) stat.getCorrect() / (double) stat.getTotal();
 					if(stat == null || stat.getTotal() < 4 || score < 0.75 || pick_attempt >= 5)
 					{
 						repick=false;
@@ -209,9 +202,32 @@ public class VocabQuizController {
 			
 			Word word = words.get(wi);
 			List<Integer> iList = map.getMaps().get(word.toString());
+			List<Integer> nList = new ArrayList<Integer>();
+			int n = 0;
 			
-			int qi = randomGenerator.nextInt(iList.size());
-			Question question = map.getQuestions()[iList.get(qi)];
+			for(Integer index : iList)
+			{
+				List<Integer> aList = map.getMaps().get(activity);
+				List<Integer> wList = map.getMaps().get(wordType);
+				List<Integer> rList = map.getMaps().get(relationship);
+				List<Integer> sList = map.getMaps().get(sentenceType);
+				
+				if(aList != null && aList.contains(index))
+					n++;
+				if(wList != null && wList.contains(index))
+					n++;
+				if(rList != null && rList.contains(index))
+					n++;
+				if(sList != null && sList.contains(index))
+					n++;
+				
+				for(int j=0; j<(2^n); j++)
+					nList.add(index);
+			}
+			
+			int ni = randomGenerator.nextInt(nList.size());
+			int qi = nList.get(ni);
+			Question question = map.getQuestions()[qi];
 			
 			String sentence_es = question.getQuestion_es();
 			String sentence = question.getQuestion();
